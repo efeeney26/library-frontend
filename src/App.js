@@ -1,14 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
 
-function App() {
+function App () {
   return (
     <div className="App">
       <header className="App-header">
         Library-front-cra
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
