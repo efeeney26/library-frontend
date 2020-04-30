@@ -1,27 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import TableRow from './TableRow'
 import TableHead from './TableHead'
 
+import { booksScheme } from '../../scheme'
+
 const Table = (props) => {
+  const { tableData } = props
+
   return (
-    <table>
+    <table cellSpacing={0} border={1}>
       <thead>
-        <TableHead />
+        <TableHead scheme={booksScheme}/>
       </thead>
-      <tbody>
-        <TableRow />
-      </tbody>
+      {tableData?.length &&
+        <tbody>
+          <TableRow
+            scheme={booksScheme}
+            items={tableData}
+          />
+        </tbody>
+      }
     </table>
   )
 }
 
 Table.propTypes = {
-  children: PropTypes.node
+  tableData: PropTypes.arrayOf(PropTypes.object)
 }
 
 Table.defaultProps = {
-  children: null
+  tableData: []
 }
 
 export default Table
