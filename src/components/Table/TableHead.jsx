@@ -1,20 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const TableHead = ({ scheme }) => (
+const TableHead = ({ data }) => (
   <tr>
-    {scheme.map((item) => (
-      <th key={item.key}>{item.value}</th>
+    {data.map((item) => (
+      <th key={item}>{item}</th>
     ))}
   </tr>
 )
 
 TableHead.propTypes = {
-  scheme: PropTypes.arrayOf(PropTypes.object)
+  data: PropTypes.arrayOf(PropTypes.string)
 }
 
 TableHead.defaultProps = {
-  scheme: []
+  data: []
 }
 
 export default TableHead

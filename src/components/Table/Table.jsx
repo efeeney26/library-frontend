@@ -4,21 +4,17 @@ import PropTypes from 'prop-types'
 import TableRow from './TableRow'
 import TableHead from './TableHead'
 
-import { booksScheme } from '../../scheme'
-
 const Table = (props) => {
-  const { tableData } = props
-
+  const { tableHeaders, tableData } = props
   return (
     <table cellSpacing={0} border={1}>
       <thead>
-        <TableHead scheme={booksScheme}/>
+        <TableHead data={tableHeaders}/>
       </thead>
       {tableData?.length &&
         <tbody>
           <TableRow
-            scheme={booksScheme}
-            items={tableData}
+            data={tableData}
           />
         </tbody>
       }
@@ -27,7 +23,8 @@ const Table = (props) => {
 }
 
 Table.propTypes = {
-  tableData: PropTypes.arrayOf(PropTypes.object)
+  tableData: PropTypes.arrayOf(PropTypes.array),
+  tableHeaders: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 Table.defaultProps = {

@@ -1,22 +1,28 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { actions, selectors } from '../../__data__'
-import { Table } from '../../components'
+import { Table, Spinner } from '../../components'
+import { getTableSchemeData, getTableData } from '../../utils'
 
 const BooksList = (props) => {
-  const { fetchBooks, books } = props
+  const { fetchBooks, books, scheme } = props
   const { books: booksList, isFetching } = books
+  const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'value'), [scheme])
+  const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
 
   return (
     <Fragment>
-      {isFetching && <p>Loading...</p>}
+      {isFetching && <Spinner />}
       {!isFetching && booksList?.length &&
-      <Table tableData={booksList}/>
+      <Table
+        tableHeaders={tableHeaders}
+        tableData={tableData}
+      />
       }
     </Fragment>
   )
@@ -32,7 +38,8 @@ const mapDispatchToProps = ({
 
 BooksList.propTypes = {
   fetchBooks: PropTypes.func.isRequired,
-  books: PropTypes.object
+  books: PropTypes.object,
+  scheme: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 BooksList.defaultProps = {
