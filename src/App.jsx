@@ -11,6 +11,7 @@ export const withScheme = (Component, scheme) => (props) => <Component {...props
 function App () {
   return (
     <div className={style.mainContainer}>
+      <h1>Library</h1>
       <BrowserRouter>
         <Redirect to={ROUTES.BASE_URL}/>
         <Switch>
