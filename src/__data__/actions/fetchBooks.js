@@ -1,9 +1,7 @@
 import axiosInstance from '../axios'
-import requestBooks from './requestBooks'
 import receiveBooks from './receiveBooks'
 
 const fetchBooks = () => (dispacth) => {
-  dispacth(requestBooks())
   axiosInstance
     .get('')
     .then((res) => {

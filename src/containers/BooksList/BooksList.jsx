@@ -1,14 +1,14 @@
-import React, { Fragment, useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { actions, selectors } from '../../__data__'
-import { Table, Spinner } from '../../components'
+import { Table } from '../../components'
 import { getTableSchemeData, getTableData } from '../../utils'
 
 const BooksList = (props) => {
   const { fetchBooks, books, scheme } = props
-  const { books: booksList, isFetching } = books
+  const { books: booksList } = books
   const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'value'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
@@ -16,15 +16,11 @@ const BooksList = (props) => {
   }, [fetchBooks])
 
   return (
-    <Fragment>
-      {isFetching && <Spinner />}
-      {!isFetching && booksList?.length &&
+    booksList && booksList.length > 0 &&
       <Table
         tableHeaders={tableHeaders}
         tableData={tableData}
       />
-      }
-    </Fragment>
   )
 }
 
