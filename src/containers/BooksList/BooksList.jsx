@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { actions, selectors } from '../../__data__'
-import { Table, Spinner } from '../../components'
+import { Table, Spinner, ErrorBanner } from '../../components'
 import { getTableSchemeData, getTableData } from '../../utils'
 
 const BooksList = (props) => {
@@ -18,11 +18,12 @@ const BooksList = (props) => {
   return (
     <Fragment>
       {isFetching && <Spinner />}
-      {!isFetching && booksList?.length &&
-      <Table
-        tableHeaders={tableHeaders}
-        tableData={tableData}
-      />
+      {!isFetching && booksList?.length
+        ? <Table
+          tableHeaders={tableHeaders}
+          tableData={tableData}
+        />
+        : <ErrorBanner />
       }
     </Fragment>
   )

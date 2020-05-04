@@ -1,6 +1,7 @@
 import axiosInstance from '../axios'
 import requestBooks from './requestBooks'
 import receiveBooks from './receiveBooks'
+import failedRequestBooks from './failedRequstBooks'
 
 const fetchBooks = () => (dispacth) => {
   dispacth(requestBooks())
@@ -9,7 +10,10 @@ const fetchBooks = () => (dispacth) => {
     .then((res) => {
       dispacth(receiveBooks(res.data.books))
     })
-    .catch((err) => console.log('An error occurred.', err))
+    .catch((err) => {
+      dispacth(failedRequestBooks())
+      console.log('An error occurred.', err)
+    })
 }
 
 export default fetchBooks
