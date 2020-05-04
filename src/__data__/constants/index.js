@@ -1,6 +1,7 @@
 export const INITIAL_STATE = {
   books: [],
-  isFetching: false
+  isFetching: false,
+  isError: false
 }
 
 export const SLICE = 'books'

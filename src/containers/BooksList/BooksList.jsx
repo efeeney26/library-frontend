@@ -8,7 +8,7 @@ import { getTableSchemeData, getTableData } from '../../utils'
 
 const BooksList = (props) => {
   const { fetchBooks, books, scheme } = props
-  const { books: booksList, isFetching } = books
+  const { books: booksList, isFetching, isError } = books
   const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'value'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
@@ -18,12 +18,12 @@ const BooksList = (props) => {
   return (
     <Fragment>
       {isFetching && <Spinner />}
-      {!isFetching && tableData?.length
-        ? <Table
-          tableHeaders={tableHeaders}
-          tableData={tableData}
-        />
-        : <ErrorBanner />
+      {isError && <ErrorBanner />}
+      {!isFetching && tableData?.length &&
+          <Table
+            tableHeaders={tableHeaders}
+            tableData={tableData}
+          />
       }
     </Fragment>
   )

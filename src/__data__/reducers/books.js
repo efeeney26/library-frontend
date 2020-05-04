@@ -17,7 +17,8 @@ const books = (state = INITIAL_STATE, action) => {
     case types.FAILED_REQUEST_BOOKS:
       return {
         ...state,
-        isFetching: false
+        isFetching: false,
+        isError: true
       }
     default:
       return state
