@@ -1,27 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import TableRow from './TableRow'
 import TableHead from './TableHead'
 
 const Table = (props) => {
+  const { tableHeaders, tableData } = props
   return (
-    <table>
+    <table cellSpacing={0} border={1}>
       <thead>
-        <TableHead />
+        <TableHead data={tableHeaders}/>
       </thead>
-      <tbody>
-        <TableRow />
-      </tbody>
+      {tableData?.length &&
+        <tbody>
+          <TableRow
+            data={tableData}
+          />
+        </tbody>
+      }
     </table>
   )
 }
 
 Table.propTypes = {
-  children: PropTypes.node
+  tableData: PropTypes.arrayOf(PropTypes.array),
+  tableHeaders: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 Table.defaultProps = {
-  children: null
+  tableData: []
 }
 
 export default Table

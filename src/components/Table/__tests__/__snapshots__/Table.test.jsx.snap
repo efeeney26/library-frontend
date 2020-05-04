@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table snapshot 1`] = `
+<table
+  border={1}
+  cellSpacing={0}
+>
+  <thead>
+    <tr>
+      <th>
+        testHeader1
+      </th>
+      <th>
+        testHeader2
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        testData1
+      </td>
+      <td>
+        testData2
+      </td>
+    </tr>
+    <tr>
+      <td>
+        testData3
+      </td>
+      <td>
+        testData4
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

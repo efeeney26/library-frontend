@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableRow snapshot 1`] = `
+Array [
+  <tr>
+    <td>
+      testData1
+    </td>
+    <td>
+      testData2
+    </td>
+  </tr>,
+  <tr>
+    <td>
+      testData3
+    </td>
+    <td>
+      testData4
+    </td>
+  </tr>,
+]
+`;
