@@ -4,6 +4,9 @@ export const getTableSchemeData = (scheme, key) => scheme.map((item) => item[key
 
 export const getTableData = (data, scheme) => {
   const tableKeys = getTableSchemeData(scheme, 'key')
+  if (!data?.length) {
+    return null
+  }
   return data.map((dataItem) => {
     const test = pick(dataItem, tableKeys)
     return Object.values(test)

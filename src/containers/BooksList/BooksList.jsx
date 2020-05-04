@@ -18,7 +18,7 @@ const BooksList = (props) => {
   return (
     <Fragment>
       {isFetching && <Spinner />}
-      {!isFetching && booksList?.length
+      {!isFetching && tableData?.length
         ? <Table
           tableHeaders={tableHeaders}
           tableData={tableData}
