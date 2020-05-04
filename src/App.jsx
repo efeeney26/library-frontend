@@ -1,22 +1,13 @@
-import React, { Suspense, lazy } from 'react'
-import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
+import React, { lazy } from 'react'
+import { Switch, BrowserRouter, Redirect } from 'react-router-dom'
 
-import { Spinner } from './components'
-import { BooksList } from './containers'
+import { RouteLazyComponent } from './components'
 import { ROUTES } from './constants'
 import { booksScheme } from './scheme'
 
 import style from './App.module.css'
 
-const withScheme = (Component, scheme) => (props) => <Component {...props} scheme={scheme} />
-
-const Test = lazy(() => import('./containers/BooksList/BooksList'))
-
-const Test1 = (props) => (
-  <Suspense fallback={<Spinner />}>
-    <Test {...props}/>
-  </Suspense>
-)
+const BooksList = lazy(() => import('./containers/BooksList/BooksList'))
 
 function App () {
   return (
@@ -25,7 +16,7 @@ function App () {
       <BrowserRouter>
         <Redirect to={ROUTES.BASE_URL}/>
         <Switch>
-          <Route exact path={ROUTES.BASE_URL} component={withScheme(Test1, booksScheme)}/>
+          <RouteLazyComponent component={BooksList} scheme={booksScheme}/>
         </Switch>
       </BrowserRouter>
     </div>
