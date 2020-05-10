@@ -2,8 +2,8 @@ import React from 'react'
 import Table from '../Table'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import TableHead from '../TableHead'
-import TableRow from '../TableRow'
+import TableHead from '../TableHead/TableHead'
+import TableRow from '../TableRow/TableRow'
 
 const props = {
   tableHeaders: ['testHeader1', 'testHeader2'],

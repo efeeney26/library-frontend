@@ -1,0 +1,16 @@
+@import "../utils/styles/colors.config.css";
+@import "../utils/styles/font-sizes.config.css";
+
+.link {
+    color: var(--white);
+    font-size: var(--font-size-md);
+}
+
+.button {
+    text-decoration: none;
+    composes: button from '../Button/Button.module.css';
+}
+
+.blue {
+    background-color: var(--blue);
+}

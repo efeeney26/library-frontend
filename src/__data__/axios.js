@@ -3,7 +3,7 @@ import { ROUTES } from '../constants'
 import { baseUrlInterceptor } from './interceptors'
 
 const axiosInstance = axios.create({
-  baseURL: ROUTES.BASE_API_URL_DEV,
+  baseURL: ROUTES.BASE_API_URL,
   timeout: 5000
 })
 

@@ -3,8 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { actions, selectors } from '../../__data__'
-import { Table, Spinner, ErrorBanner } from '../../components'
+import { Table, Spinner, ErrorBanner, Link, mergeTheme } from '../../components'
 import { getTableSchemeData, getTableData } from '../../utils'
+
+import styles from './BookList.module.css'
+import { ROUTES } from '../../constants'
+
+const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 
 const BooksList = (props) => {
   const { fetchBooks, books, scheme } = props
@@ -20,10 +25,19 @@ const BooksList = (props) => {
       {isFetching && <Spinner />}
       {isError && <ErrorBanner />}
       {!isFetching && tableData?.length &&
-          <Table
-            tableHeaders={tableHeaders}
-            tableData={tableData}
-          />
+      <section className={styles.container}>
+        <Table
+          tableHeaders={tableHeaders}
+          tableData={tableData}
+        />
+        <Link
+          label="Добавить книгу"
+          to={ROUTES.ADD_BOOK}
+          theme={linkTheme}
+          mode="button"
+          colorScheme="blue"
+        />
+      </section>
       }
     </Fragment>
   )
