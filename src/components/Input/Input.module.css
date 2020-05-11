@@ -1,0 +1,8 @@
+@import "../utils/styles/font-sizes.config.css";
+
+.input {
+    padding: 20px;
+    border-radius: 10px;
+    font-size: var(--font-size-md);
+    width: 100%;
+}

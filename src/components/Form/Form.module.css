@@ -1,0 +1,13 @@
+@import "../utils/styles/offsets.config.css";
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form > :not(:last-child){
+    margin-bottom: var(--offset-lg);
+}
