@@ -1,21 +1,21 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { noop } from 'lodash'
 import { Form as FinalForm, Field } from 'react-final-form'
-import { labeledComponent, Input, Form, Button } from '../../components'
+
+import { actions, selectors } from '../../__data__'
+import { LabeledInput, LabeledTextarea, Form, Button } from '../../components'
 
 import styles from './AddBook.module.css'
 
-const LabeledInput = labeledComponent(Input)
-
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
-const onSubmit = async values => {
-  await sleep(300)
-  window.alert(JSON.stringify(values, 0, 2))
-}
-
 const AddBook = (props) => {
-  const { scheme } = props
+  const { scheme, fetchBook } = props
+
+  const onSubmit = useCallback(values => {
+    fetchBook(values)
+  }, [])
+
   return (
     <FinalForm
       onSubmit={onSubmit}
@@ -23,11 +23,11 @@ const AddBook = (props) => {
         <Form
           onSubmit={handleSubmit}
         >
-          {scheme.map(({ key, ...rest }) => (
+          {scheme.map(({ key, type, ...rest }) => (
             <Field
               key={key}
               name={key}
-              component={LabeledInput}
+              component={type === 'textarea' ? LabeledTextarea : LabeledInput}
               {...rest}
             />
           ))}
@@ -49,8 +49,21 @@ const AddBook = (props) => {
   )
 }
 
+const mapStateToProps = (state) => ({
+  message: selectors.getMessage(state)
+})
+
+const mapDispatchToProps = ({
+  fetchBook: actions.fetchBook
+})
+
 AddBook.propTypes = {
-  scheme: PropTypes.arrayOf(PropTypes.object).isRequired
+  scheme: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchBook: PropTypes.func
 }
 
-export default AddBook
+AddBook.defaultProps = {
+  fetchBook: noop()
+}
+
+export default connect(null, mapDispatchToProps)(AddBook)

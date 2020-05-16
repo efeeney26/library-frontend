@@ -1,20 +1,20 @@
 import * as types from '../action-types'
-import { BOOKS_INITIAL_STATE } from '../constants'
+import { BOOK_INITIAL_STATE } from '../constants'
 
-const books = (state = BOOKS_INITIAL_STATE, action) => {
+const book = (state = BOOK_INITIAL_STATE, action) => {
   switch (action.type) {
-    case types.REQUEST_BOOKS:
+    case types.REQUEST_BOOK:
       return {
         ...state,
         isFetching: true
       }
-    case types.RECEIVE_BOOKS:
+    case types.SUCCESS_REQUEST_BOOK:
       return {
         ...state,
         isFetching: false,
-        books: action.books
+        message: action.message
       }
-    case types.FAILED_REQUEST_BOOKS:
+    case types.FAILED_REQUEST_BOOK:
       return {
         ...state,
         isFetching: false,
@@ -25,4 +25,4 @@ const books = (state = BOOKS_INITIAL_STATE, action) => {
   }
 }
 
-export default books
+export default book

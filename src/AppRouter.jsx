@@ -9,9 +9,9 @@ const withScheme = (Component, scheme) => (props) => <Component {...props} schem
 const AppRouter = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" render={() => (<Redirect to={ROUTES.BASE_URL}/>)}/>
-      <Route exact path={ROUTES.BASE_URL} component={withScheme(BooksList, booksScheme)}/>
-      <Route exact path={ROUTES.ADD_BOOK} component={withScheme(AddBook, bookScheme)}/>
+      <Route exact path="/" render={() => (<Redirect to={ROUTES.APP_URLS.BASE_URL}/>)}/>
+      <Route exact path={ROUTES.APP_URLS.BASE_URL} component={withScheme(BooksList, booksScheme)}/>
+      <Route exact path={ROUTES.APP_URLS.ADD_BOOK} component={withScheme(AddBook, bookScheme)}/>
     </Switch>
   </BrowserRouter>
 )
