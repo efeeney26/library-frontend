@@ -1,7 +1,7 @@
 import * as types from '../action-types'
-import { BOOK_INITIAL_STATE } from '../constants'
+import { ADD_BOOK_INITIAL_STATE } from '../constants'
 
-const book = (state = BOOK_INITIAL_STATE, action) => {
+const addBook = (state = ADD_BOOK_INITIAL_STATE, action) => {
   switch (action.type) {
     case types.REQUEST_BOOK:
       return {
@@ -25,4 +25,4 @@ const book = (state = BOOK_INITIAL_STATE, action) => {
   }
 }
 
-export default book
+export default addBook

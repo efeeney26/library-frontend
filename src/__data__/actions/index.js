@@ -1,7 +1,7 @@
 import { fetchBooks } from './books'
-import { fetchBook } from './book'
+import { addBook } from './addBook'
 
 export {
   fetchBooks,
-  fetchBook
+  addBook
 }

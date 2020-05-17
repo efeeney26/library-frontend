@@ -8,9 +8,9 @@ const TableRow = (props) => {
   return (
     data.map((dataItem) => (
       <tr key={dataItem}>
-        {dataItem.map((valueItem) => (
+        {dataItem.map((valueItem, i) => (
           <td
-            key={valueItem}
+            key={i}
             className={styles.cell}
           >{valueItem}
           </td>

@@ -14,7 +14,7 @@ export const requestBook = () => ({
   type: types.REQUEST_BOOK
 })
 
-export const fetchBook = (book) => (dispatch) => {
+export const addBook = (book) => (dispatch) => {
   dispatch(requestBook())
   API.addBook(book)
     .then((res) => {

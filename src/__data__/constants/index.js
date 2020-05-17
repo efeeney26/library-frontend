@@ -4,7 +4,7 @@ export const BOOKS_INITIAL_STATE = {
   isError: false
 }
 
-export const BOOK_INITIAL_STATE = {
+export const ADD_BOOK_INITIAL_STATE = {
   message: '',
   isFetching: false,
   isError: false
