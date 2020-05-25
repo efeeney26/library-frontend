@@ -4,10 +4,8 @@ export const BOOKS_INITIAL_STATE = {
   isError: false
 }
 
-export const ADD_BOOK_INITIAL_STATE = {
-  message: '',
+export const BOOK_INITIAL_STATE = {
+  book: {},
   isFetching: false,
   isError: false
 }
-
-export const SLICE = 'books'

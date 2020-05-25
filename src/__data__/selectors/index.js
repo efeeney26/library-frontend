@@ -1,2 +1,2 @@
 export const getBooks = (state) => state.books
-export const addBook = (state) => state.addBook
+export const getBookState = (state) => state.book
