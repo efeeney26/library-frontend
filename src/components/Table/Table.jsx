@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import TableRow from './TableRow'
-import TableHead from './TableHead'
+import TableRow from './TableRow/TableRow'
+import TableHead from './TableHead/TableHead'
 
 const Table = (props) => {
   const { tableHeaders, tableData } = props

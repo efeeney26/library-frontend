@@ -1,9 +1,7 @@
-import fetchBooks from './fetchBooks'
-import receiveBooks from './receiveBooks'
-import requestBooks from './requestBooks'
+import { fetchBooks } from './books'
+import { addBook } from './book'
 
 export {
   fetchBooks,
-  receiveBooks,
-  requestBooks
+  addBook
 }

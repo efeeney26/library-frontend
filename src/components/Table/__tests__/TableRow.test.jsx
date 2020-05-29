@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import TableRow from '../TableRow'
+import TableRow from '../TableRow/TableRow'
 
 const props = {
   data: [

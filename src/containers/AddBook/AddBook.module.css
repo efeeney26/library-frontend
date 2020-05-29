@@ -1,0 +1,10 @@
+@import "../../components/utils/styles/offsets.config.css";
+
+.buttonBlock {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonBlock > :not(:last-child) {
+    margin-right: var(--offset-lg);
+}

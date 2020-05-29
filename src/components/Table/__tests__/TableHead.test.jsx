@@ -1,5 +1,5 @@
 import React from 'react'
-import TableHead from '../TableHead'
+import TableHead from '../TableHead/TableHead'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 

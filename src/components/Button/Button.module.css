@@ -1,0 +1,25 @@
+@import "../utils/styles/colors.config.css";
+@import "../utils/styles/font-sizes.config.css";
+
+.button {
+    padding: 20px;
+    border-radius: 10px;
+    font-size: var(--font-size-md);
+    border: 2px solid var(--white);
+    cursor: pointer;
+    background-color: var(--black);
+    color: var(--white);
+    width: auto;
+}
+
+.button:disabled {
+    background-color: var(--black);
+}
+
+.blue {
+    background-color: var(--blue);
+}
+
+.red {
+    background-color: var(--red);
+}

@@ -1,7 +1,7 @@
 import * as types from '../action-types'
-import { INITIAL_STATE } from '../constants'
+import { BOOKS_INITIAL_STATE } from '../constants'
 
-const books = (state = INITIAL_STATE, action) => {
+const books = (state = BOOKS_INITIAL_STATE, action) => {
   switch (action.type) {
     case types.REQUEST_BOOKS:
       return {
