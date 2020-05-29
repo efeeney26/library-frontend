@@ -1,0 +1,15 @@
+@import "../utils/styles/offsets.config.css";
+@import "../utils/styles/font-sizes.config.css";
+
+.labeled {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 50%;
+}
+
+.label {
+    font-size: var(--font-size-md);
+    margin-bottom: var(--offset-xs);
+}

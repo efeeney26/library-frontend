@@ -7,28 +7,40 @@ exports[`Table snapshot 1`] = `
 >
   <thead>
     <tr>
-      <th>
+      <th
+        className="head"
+      >
         testHeader1
       </th>
-      <th>
+      <th
+        className="head"
+      >
         testHeader2
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td
+        className="cell"
+      >
         testData1
       </td>
-      <td>
+      <td
+        className="cell"
+      >
         testData2
       </td>
     </tr>
     <tr>
-      <td>
+      <td
+        className="cell"
+      >
         testData3
       </td>
-      <td>
+      <td
+        className="cell"
+      >
         testData4
       </td>
     </tr>

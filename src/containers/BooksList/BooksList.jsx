@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { actions, selectors } from '../../__data__'
 import { Table, Spinner, ErrorBanner, Link, mergeTheme } from '../../components'
-import { getTableSchemeData, getTableData } from '../../utils'
+import { getTableSchemeData, getTableData } from '../utils'
 
 import styles from './BookList.module.css'
 import { ROUTES } from '../../constants'
@@ -32,7 +32,7 @@ const BooksList = (props) => {
         />
         <Link
           label="Добавить книгу"
-          to={ROUTES.ADD_BOOK}
+          to={ROUTES.APP_URLS.ADD_BOOK}
           theme={linkTheme}
           mode="button"
           colorScheme="blue"
