@@ -14,7 +14,7 @@ const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 const BooksList = (props) => {
   const { fetchBooks, books, scheme } = props
   const { books: booksList, isFetching, isError } = books
-  const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'value'), [scheme])
+  const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'title'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
     fetchBooks()

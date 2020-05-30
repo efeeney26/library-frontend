@@ -1,19 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './TableRow.module.css'
+import TableCell from '../TableCell/TableCell'
 
 const TableRow = (props) => {
   const { data } = props
   return (
-    data.map((dataItem) => (
-      <tr key={dataItem}>
-        {dataItem.map((valueItem, i) => (
-          <td
-            key={i}
-            className={styles.cell}
-          >{valueItem}
-          </td>
+    data.map((dataItem, i) => (
+      <tr key={i}>
+        {dataItem.map((valueItem) => (
+          <TableCell
+            key={valueItem.key}
+            cellValue={valueItem}
+          />
         ))}
       </tr>
     ))
