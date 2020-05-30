@@ -6,12 +6,12 @@ import TableCell from '../TableCell/TableCell'
 const TableRow = (props) => {
   const { data } = props
   return (
-    data.map((dataItem, i) => (
+    data.map((dataCells, i) => (
       <tr key={i}>
-        {dataItem.map((valueItem) => (
+        {dataCells.map((cellData) => (
           <TableCell
-            key={valueItem.key}
-            cellValue={valueItem}
+            key={cellData.key}
+            cellData={cellData}
           />
         ))}
       </tr>
