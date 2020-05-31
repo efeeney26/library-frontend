@@ -7,10 +7,11 @@ const TableRow = (props) => {
   const { data } = props
   return (
     data.map((dataCells, i) => (
+      // добавить nanoid
       <tr key={i}>
-        {dataCells.map((cellData) => (
+        {dataCells.map((cellData, i) => (
           <TableCell
-            key={cellData.key}
+            key={`${cellData.key}${i}`}
             cellData={cellData}
           />
         ))}

@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useMemo } from 'react'
+import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -12,7 +13,7 @@ import { ROUTES } from '../../constants'
 const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 
 const BooksList = (props) => {
-  const { fetchBooks, books, scheme, deleteBook } = props
+  const { fetchBooks, books, scheme, deleteBook, history } = props
   const { books: booksList, isFetching, isError } = books
   const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'title'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
@@ -31,6 +32,10 @@ const BooksList = (props) => {
     }
   }
 
+  const handleEditData = (id) => {
+    history.push(`/books/${id}`)
+  }
+
   return (
     <Fragment>
       {isFetching && <Spinner />}
@@ -41,6 +46,7 @@ const BooksList = (props) => {
           tableHeaders={tableHeaders}
           tableData={tableData}
           onDeleteData={handleDeleteData}
+          onEditData={handleEditData}
         />
         <Link
           label="Добавить книгу"
@@ -68,11 +74,12 @@ BooksList.propTypes = {
   fetchBooks: PropTypes.func.isRequired,
   deleteBook: PropTypes.func.isRequired,
   books: PropTypes.object,
-  scheme: PropTypes.arrayOf(PropTypes.object).isRequired
+  scheme: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.object
 }
 
 BooksList.defaultProps = {
   books: {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BooksList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BooksList))
