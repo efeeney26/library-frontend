@@ -1,0 +1,18 @@
+@import "../utils/styles/colors.config.css";
+
+.icon {
+    cursor: pointer;
+}
+
+.icon svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.blue path {
+    fill: var(--blue);
+}
+
+.red path {
+    fill: var(--red);
+}

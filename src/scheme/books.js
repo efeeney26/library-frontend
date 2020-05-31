@@ -1,23 +1,34 @@
 const booksScheme = [
   {
     key: 'id',
-    value: 'Id'
+    type: 'text',
+    title: 'Id'
   },
   {
     key: 'name',
-    value: 'Название книги'
+    type: 'text',
+    title: 'Название книги'
   },
   {
     key: 'author',
-    value: 'Автор книги'
+    type: 'text',
+    title: 'Автор книги'
   },
   {
     key: 'genre',
-    value: 'Жанр книги'
+    type: 'text',
+    title: 'Жанр книги'
   },
   {
     key: 'description',
-    value: 'Описание книги'
+    type: 'text',
+    title: 'Описание книги'
+  },
+  {
+    key: 'actions',
+    type: 'icon',
+    icon: 'deleteIcon',
+    title: ''
   }
 ]
 

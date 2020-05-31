@@ -1,30 +1,42 @@
-import React from 'react'
+import React, { createContext, useContext } from 'react'
 import PropTypes from 'prop-types'
 
 import TableRow from './TableRow/TableRow'
 import TableHead from './TableHead/TableHead'
 
+export const TableContext = createContext({})
+
+export const useTableContext = () => useContext(TableContext)
+
 const Table = (props) => {
-  const { tableHeaders, tableData } = props
+  const { tableHeaders, tableData, onDeleteData } = props
+
+  const state = {
+    onDeleteData
+  }
+
   return (
-    <table cellSpacing={0} border={1}>
-      <thead>
-        <TableHead data={tableHeaders}/>
-      </thead>
-      {tableData?.length &&
+    <TableContext.Provider value={state}>
+      <table cellSpacing={0} border={1}>
+        <thead>
+          <TableHead data={tableHeaders}/>
+        </thead>
+        {tableData?.length &&
         <tbody>
           <TableRow
             data={tableData}
           />
         </tbody>
-      }
-    </table>
+        }
+      </table>
+    </TableContext.Provider>
   )
 }
 
 Table.propTypes = {
   tableData: PropTypes.arrayOf(PropTypes.array),
-  tableHeaders: PropTypes.arrayOf(PropTypes.string).isRequired
+  tableHeaders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onDeleteData: PropTypes.func
 }
 
 Table.defaultProps = {
