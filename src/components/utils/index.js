@@ -8,3 +8,8 @@ export const mergeTheme = (...args) => mergeWith({}, ...args, mergeRule)
 export {
   labeledComponent
 } from './hoc'
+
+export {
+  LabeledInput,
+  LabeledTextarea
+} from './labeledComponents'

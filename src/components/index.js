@@ -7,8 +7,7 @@ import Spinner from './Spinner/Spinner'
 import ErrorBanner from './ErrorBanner/ErrorBanner'
 import TextArea from './Textarea/Textarea'
 import Icon from './Icon/Icon'
-import { mergeTheme, labeledComponent } from './utils'
-import { LabeledInput, LabeledTextarea } from './labeledComponents'
+import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
   Table,

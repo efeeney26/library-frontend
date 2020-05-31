@@ -12,13 +12,24 @@ import { ROUTES } from '../../constants'
 const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 
 const BooksList = (props) => {
-  const { fetchBooks, books, scheme } = props
+  const { fetchBooks, books, scheme, deleteBook } = props
   const { books: booksList, isFetching, isError } = books
   const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'title'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
+
+  const handleDeleteData = (id) => {
+    if (window.confirm('Вы точно хотите удалить книгу?')) {
+      deleteBook(id)
+        .then(res => {
+          const { data: { message } } = res
+          alert(message)
+          document.location.reload(true)
+        })
+    }
+  }
 
   return (
     <Fragment>
@@ -29,6 +40,7 @@ const BooksList = (props) => {
         <Table
           tableHeaders={tableHeaders}
           tableData={tableData}
+          onDeleteData={handleDeleteData}
         />
         <Link
           label="Добавить книгу"
@@ -48,11 +60,13 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-  fetchBooks: actions.fetchBooks
+  fetchBooks: actions.fetchBooks,
+  deleteBook: actions.deleteBook
 })
 
 BooksList.propTypes = {
   fetchBooks: PropTypes.func.isRequired,
+  deleteBook: PropTypes.func.isRequired,
   books: PropTypes.object,
   scheme: PropTypes.arrayOf(PropTypes.object).isRequired
 }

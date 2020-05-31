@@ -25,3 +25,16 @@ export const addBook = (book) => async (dispatch) => {
   dispatch(successRequestBook())
   return response
 }
+
+export const deleteBook = (id) => async (dispatch) => {
+  dispatch(requestBook())
+  let response = {}
+  try {
+    response = await API.deleteBook(id)
+  } catch (err) {
+    dispatch(failedRequestBook())
+    console.log('An error occurred.', err)
+  }
+  dispatch(successRequestBook())
+  return response
+}

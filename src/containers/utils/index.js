@@ -5,7 +5,7 @@ export const getTableSchemeData = (scheme, key) => scheme.map((item) => item[key
 export const transformObjToArray = (obj, key) => {
   return transform(obj, (res, val) => {
     res.push({
-      [key]: val.toString()
+      [key]: val && val.toString()
     })
   }, [])
 }
@@ -19,9 +19,17 @@ export const getTableData = (data, scheme) => {
     const schemeData = pick(dataItem, tableKeys)
     const transformSchemeData = transformObjToArray(schemeData, 'value')
 
-    return scheme.map((schemeItem, i) => ({
-      ...schemeItem,
-      ...transformSchemeData[i]
-    }))
+    return scheme.map((schemeItem, i) => {
+      if (schemeItem.key === 'actions') {
+        return {
+          ...schemeItem,
+          itemId: dataItem.id
+        }
+      }
+      return {
+        ...schemeItem,
+        ...transformSchemeData[i]
+      }
+    })
   })
 }
