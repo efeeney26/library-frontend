@@ -5,9 +5,10 @@ import styles from './TableHead.module.css'
 
 const TableHead = ({ data }) => (
   <tr>
-    {data.map((item) => (
+    {data.map((item, i) => (
       <th
-        key={item}
+        // добавить nanoid
+        key={i}
         className={styles.head}
       >
         {item}

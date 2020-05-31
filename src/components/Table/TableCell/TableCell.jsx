@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
+import { noop } from 'lodash'
 
 import Icon from '../../Icon/Icon'
 import { ICONS } from '../../../constants'
@@ -11,13 +12,20 @@ const TableCell = ({ cellData }) => {
   const tableContext = useTableContext()
 
   const handleClick = () => {
-    tableContext.onDeleteData(cellData.itemId)
+    switch (cellData.action) {
+      case 'edit':
+        return tableContext.onEditData(cellData.itemId)
+      case 'delete':
+        return tableContext.onDeleteData(cellData.itemId)
+      default:
+        return noop()
+    }
   }
 
   const setCellValue = (cellData) => {
     switch (cellData.type) {
       case 'icon':
-        return <Icon name={ICONS[cellData.icon]} onClick={handleClick} colorScheme="red" />
+        return <Icon name={ICONS[cellData.icon]} onClick={handleClick} colorScheme={cellData.color} />
       case 'img':
         return 'img'
       default:

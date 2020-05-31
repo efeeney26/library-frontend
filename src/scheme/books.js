@@ -27,8 +27,16 @@ const booksScheme = [
   {
     key: 'actions',
     type: 'icon',
+    action: 'edit',
+    icon: 'editIcon',
+    color: 'blue'
+  },
+  {
+    key: 'actions',
+    type: 'icon',
+    action: 'delete',
     icon: 'deleteIcon',
-    title: ''
+    color: 'red'
   }
 ]
 
