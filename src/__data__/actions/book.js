@@ -38,3 +38,8 @@ export const deleteBook = (id) => async (dispatch) => {
   dispatch(successRequestBook())
   return response
 }
+
+export const saveEditBook = (book) => ({
+  type: types.SAVE_EDIT_BOOK,
+  book
+})

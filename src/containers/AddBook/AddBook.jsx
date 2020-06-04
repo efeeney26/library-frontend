@@ -58,7 +58,7 @@ const AddBook = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  bookState: selectors.getBookState(state)
+  bookState: selectors.getBook(state)
 })
 
 const mapDispatchToProps = ({

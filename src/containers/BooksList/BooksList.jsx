@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import { actions, selectors } from '../../__data__'
 import { Table, Spinner, ErrorBanner, Link, mergeTheme } from '../../components'
-import { getTableSchemeData, getTableData } from '../utils'
+import { getSchemeKeysArray, getTableData } from '../utils'
 
 import styles from './BookList.module.css'
 import { ROUTES } from '../../constants'
@@ -13,9 +13,9 @@ import { ROUTES } from '../../constants'
 const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 
 const BooksList = (props) => {
-  const { fetchBooks, books, scheme, deleteBook, history } = props
+  const { fetchBooks, books, scheme, deleteBook, history, saveEditBook } = props
   const { books: booksList, isFetching, isError } = books
-  const tableHeaders = useMemo(() => getTableSchemeData(scheme, 'title'), [scheme])
+  const tableHeaders = useMemo(() => getSchemeKeysArray(scheme, 'title'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
     fetchBooks()
@@ -33,6 +33,8 @@ const BooksList = (props) => {
   }
 
   const handleEditData = (id) => {
+    const editBook = booksList.find(book => book.id === id)
+    saveEditBook(editBook)
     history.push(`/books/${id}`)
   }
 
@@ -67,12 +69,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = ({
   fetchBooks: actions.fetchBooks,
-  deleteBook: actions.deleteBook
+  deleteBook: actions.deleteBook,
+  saveEditBook: actions.saveEditBook
 })
 
 BooksList.propTypes = {
   fetchBooks: PropTypes.func.isRequired,
   deleteBook: PropTypes.func.isRequired,
+  saveEditBook: PropTypes.func.isRequired,
   books: PropTypes.object,
   scheme: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.object

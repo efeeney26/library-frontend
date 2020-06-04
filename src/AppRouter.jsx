@@ -12,7 +12,7 @@ const AppRouter = () => (
       <Route exact path="/" render={() => (<Redirect to={ROUTES.APP_URLS.BASE_URL}/>)}/>
       <Route exact path={ROUTES.APP_URLS.BASE_URL} component={withScheme(BooksList, booksScheme)}/>
       <Route exact path={ROUTES.APP_URLS.ADD_BOOK} component={withScheme(AddBook, bookScheme)}/>
-      <Route exact path={`${ROUTES.APP_URLS.BASE_URL}${ROUTES.APP_URLS.BOOK}`} component={BookDescription} />
+      <Route exact path={`${ROUTES.APP_URLS.BASE_URL}${ROUTES.APP_URLS.BOOK}`} component={withScheme(BookDescription, bookScheme)} />
     </Switch>
   </BrowserRouter>
 )

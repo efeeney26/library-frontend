@@ -20,6 +20,11 @@ const book = (state = BOOK_INITIAL_STATE, action) => {
         isFetching: false,
         isError: true
       }
+    case types.SAVE_EDIT_BOOK:
+      return {
+        ...state,
+        book: [action.book]
+      }
     default:
       return state
   }
