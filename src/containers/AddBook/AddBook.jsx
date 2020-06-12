@@ -11,8 +11,8 @@ import { LabeledInput, LabeledTextarea, Form, Button } from '../../components'
 import styles from './AddBook.module.css'
 
 const AddBook = (props) => {
-  const { scheme, addBook, bookState } = props
-  const { isLoading } = bookState
+  const { addBook, bookState } = props
+  const { isLoading, scheme } = bookState
   const history = useHistory()
 
   const onSubmit = useCallback(values => {
@@ -66,10 +66,9 @@ const mapDispatchToProps = ({
 })
 
 AddBook.propTypes = {
-  scheme: PropTypes.arrayOf(PropTypes.object).isRequired,
   bookState: PropTypes.shape({
     isLoading: PropTypes.bool,
-    isError: PropTypes.bool
+    scheme: PropTypes.arrayOf(PropTypes.object).isRequired
   }),
   addBook: PropTypes.func
 }

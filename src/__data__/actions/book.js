@@ -39,7 +39,7 @@ export const deleteBook = (id) => async (dispatch) => {
   return response
 }
 
-export const saveEditBook = (book) => ({
+export const saveBookById = (book) => ({
   type: types.SAVE_EDIT_BOOK,
   book
 })

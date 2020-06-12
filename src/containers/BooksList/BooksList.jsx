@@ -13,8 +13,8 @@ import { ROUTES } from '../../constants'
 const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 
 const BooksList = (props) => {
-  const { fetchBooks, books, scheme, deleteBook, history, saveEditBook } = props
-  const { books: booksList, isFetching, isError } = books
+  const { fetchBooks, books, deleteBook, history, saveBookById } = props
+  const { books: booksList, isFetching, isError, scheme } = books
   const tableHeaders = useMemo(() => getSchemeKeysArray(scheme, 'title'), [scheme])
   const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
@@ -34,7 +34,7 @@ const BooksList = (props) => {
 
   const handleEditData = (id) => {
     const editBook = booksList.find(book => book.id === id)
-    saveEditBook(editBook)
+    saveBookById(editBook)
     history.push(`/books/${id}`)
   }
 
@@ -70,15 +70,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = ({
   fetchBooks: actions.fetchBooks,
   deleteBook: actions.deleteBook,
-  saveEditBook: actions.saveEditBook
+  saveBookById: actions.saveBookById
 })
 
 BooksList.propTypes = {
   fetchBooks: PropTypes.func.isRequired,
   deleteBook: PropTypes.func.isRequired,
-  saveEditBook: PropTypes.func.isRequired,
+  saveBookById: PropTypes.func.isRequired,
   books: PropTypes.object,
-  scheme: PropTypes.arrayOf(PropTypes.object).isRequired,
   history: PropTypes.object
 }
 

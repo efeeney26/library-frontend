@@ -10,7 +10,8 @@ import { getTableData } from '../utils'
 import styles from '../AddBook/AddBook.module.css'
 
 const BookDescription = (props) => {
-  const { scheme, book } = props
+  const { bookState } = props
+  const { book, scheme } = bookState
   // TODO лишняя вложенность массивов
   const arrayData = (book && getTableData(book, scheme)) || []
   const [data] = arrayData
@@ -54,16 +55,18 @@ const BookDescription = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  book: selectors.getBook(state).book
+  bookState: selectors.getBook(state)
 })
 
 BookDescription.propTypes = {
-  book: PropTypes.array,
-  scheme: PropTypes.arrayOf(PropTypes.object).isRequired
+  bookState: PropTypes.shape({
+    book: PropTypes.array,
+    scheme: PropTypes.arrayOf(PropTypes.object).isRequired
+  })
 }
 
 BookDescription.defaultProps = {
-  book: []
+  bookState: {}
 }
 
 export default connect(mapStateToProps)(BookDescription)
