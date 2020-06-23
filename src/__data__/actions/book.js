@@ -1,5 +1,4 @@
 import * as types from '../action-types'
-import API from '../api'
 
 export const failedRequestBook = () => ({
   type: types.FAILED_REQUEST_BOOK
@@ -13,37 +12,18 @@ export const requestBook = () => ({
   type: types.REQUEST_BOOK
 })
 
-export const addBook = (book) => async (dispatch) => {
+export const fetchBook = (apiMethod, { ...rest }) => async (dispatch) => {
+  const { book = null, id = null } = rest
   dispatch(requestBook())
   let response = {}
   try {
-    response = await API.addBook(book)
-  } catch (err) {
-    dispatch(failedRequestBook())
-    console.log('An error occurred.', err)
-  }
-  dispatch(successRequestBook())
-  return response
-}
-
-export const deleteBook = (id) => async (dispatch) => {
-  dispatch(requestBook())
-  let response = {}
-  try {
-    response = await API.deleteBook(id)
-  } catch (err) {
-    dispatch(failedRequestBook())
-    console.log('An error occurred.', err)
-  }
-  dispatch(successRequestBook())
-  return response
-}
-
-export const updateBook = (book, id) => async (dispatch) => {
-  dispatch(requestBook())
-  let response = {}
-  try {
-    response = await API.updateBook(book, id)
+    if (book && id) {
+      response = await apiMethod(book, id)
+    } else if (book) {
+      response = await apiMethod(book)
+    } else {
+      response = await apiMethod(id)
+    }
   } catch (err) {
     dispatch(failedRequestBook())
     console.log('An error occurred.', err)

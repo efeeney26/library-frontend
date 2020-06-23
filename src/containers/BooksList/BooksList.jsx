@@ -2,9 +2,9 @@ import React, { Fragment, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { actions, selectors } from '../../__data__'
+import { actions, selectors, API } from '../../__data__'
 import { Table, Spinner, ErrorBanner, Link, mergeTheme } from '../../components'
-import { getSchemeKeysArray, getTableData } from '../utils'
+import { getSchemeKeysArray, getArrayData } from '../utils'
 
 import styles from './BookList.module.css'
 import { ROUTES } from '../../constants'
@@ -12,17 +12,17 @@ import { ROUTES } from '../../constants'
 const linkTheme = mergeTheme(Link.theme, { link: styles.addLink })
 
 const BooksList = (props) => {
-  const { fetchBooks, books, deleteBook, history, saveBookById } = props
+  const { fetchBooks, books, history, saveBookById, deleteBook } = props
   const { books: booksList, isFetching, isError, scheme } = books
   const tableHeaders = useMemo(() => getSchemeKeysArray(scheme, 'title'), [scheme])
-  const tableData = useMemo(() => getTableData(booksList, scheme), [booksList, scheme])
+  const tableData = useMemo(() => getArrayData(booksList, scheme), [booksList, scheme])
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
 
   const handleDeleteData = (id) => {
     if (window.confirm('Вы точно хотите удалить книгу?')) {
-      deleteBook(id)
+      deleteBook(API.deleteBook, { id })
         .then(res => {
           const { data: { message } } = res
           alert(message)
@@ -42,7 +42,7 @@ const BooksList = (props) => {
       {isFetching && <Spinner />}
       {isError && <ErrorBanner />}
       {!isFetching && tableData?.length &&
-      <section className={styles.container}>
+      <>
         <Table
           tableHeaders={tableHeaders}
           tableData={tableData}
@@ -56,7 +56,7 @@ const BooksList = (props) => {
           mode="button"
           colorScheme="blue"
         />
-      </section>
+      </>
       }
     </Fragment>
   )
@@ -68,8 +68,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = ({
   fetchBooks: actions.fetchBooks,
-  deleteBook: actions.deleteBook,
-  saveBookById: actions.saveBookById
+  saveBookById: actions.saveBookById,
+  deleteBook: actions.fetchBook
 })
 
 BooksList.propTypes = {

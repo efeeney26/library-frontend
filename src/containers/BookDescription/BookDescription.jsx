@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Form as FinalForm, Field } from 'react-final-form'
 
-import { actions, selectors } from '../../__data__'
+import { actions, selectors, API } from '../../__data__'
 import { Button, Form, LabeledInput, LabeledTextarea } from '../../components'
-import { getTableData } from '../utils'
+import { getArrayData } from '../utils'
 
 import styles from '../AddBook/AddBook.module.css'
 
@@ -15,11 +15,11 @@ const BookDescription = (props) => {
   const history = useHistory()
   const { book, scheme } = bookState
   // TODO лишняя вложенность массивов
-  const arrayData = (book && getTableData(book, scheme)) || []
+  const arrayData = (book && getArrayData(book, scheme)) || []
   const [bookData] = arrayData
 
   const onSubmit = useCallback(values => {
-    updateBook(values, book[0].id)
+    updateBook(API.updateBook, { book: values, id: book[0].id })
       .then(res => {
         const { data: { message } } = res
         alert(message)
@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-  updateBook: actions.updateBook
+  updateBook: actions.fetchBook
 })
 
 BookDescription.propTypes = {

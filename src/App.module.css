@@ -1,18 +1,14 @@
-:root {
-    --main-background-color: #0f0f0f;
-    --main-text-color: #e6e6e6
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.mainContainer {
-    background-color: var(--main-background-color);
-    color: var(--main-text-color);
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-}
-
-.addButton {
-    margin-top: var(--offset-lg);
 }

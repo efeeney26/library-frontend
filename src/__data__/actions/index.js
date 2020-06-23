@@ -1,10 +1,8 @@
 import { fetchBooks } from './books'
-import { addBook, deleteBook, saveBookById, updateBook } from './book'
+import { saveBookById, fetchBook } from './book'
 
 export {
   fetchBooks,
-  addBook,
-  deleteBook,
   saveBookById,
-  updateBook
+  fetchBook
 }
