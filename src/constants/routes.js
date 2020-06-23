@@ -5,7 +5,7 @@ export const APP_URLS = {
 }
 
 export const API_ENDPOINTS = {
-  BASE_URL: 'api/books',
+  BASE_URL: '/api/books',
   ADD_URL: '/add'
 }
 

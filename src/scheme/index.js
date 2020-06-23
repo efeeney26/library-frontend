@@ -1,5 +1,5 @@
 import booksScheme from './books'
-import bookScheme from './addBook'
+import bookScheme from './book'
 
 export {
   booksScheme,
