@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { noop } from 'lodash'
 
 import Icon from '../../Icon/Icon'
+import Link from '../../Link/Link'
 import { ICONS } from '../../../constants'
 
 import { useTableContext } from '../Table'
@@ -26,6 +27,8 @@ const TableCell = ({ cellData }) => {
     switch (cellData.type) {
       case 'icon':
         return <Icon name={ICONS[cellData.icon]} onClick={handleClick} colorScheme={cellData.color} />
+      case 'link':
+        return <Link label={cellData.linkTitle} onClick={handleClick} to={`${cellData.href}/${cellData.itemId}`}/>
       case 'img':
         return 'img'
       default:

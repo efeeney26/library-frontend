@@ -22,7 +22,7 @@ const AddBook = (props) => {
         alert(message)
         history.goBack()
       })
-  }, [])
+  }, [addBook, history])
 
   return (
     <FinalForm

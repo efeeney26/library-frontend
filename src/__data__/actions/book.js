@@ -39,6 +39,19 @@ export const deleteBook = (id) => async (dispatch) => {
   return response
 }
 
+export const updateBook = (book, id) => async (dispatch) => {
+  dispatch(requestBook())
+  let response = {}
+  try {
+    response = await API.updateBook(book, id)
+  } catch (err) {
+    dispatch(failedRequestBook())
+    console.log('An error occurred.', err)
+  }
+  dispatch(successRequestBook())
+  return response
+}
+
 export const saveBookById = (book) => ({
   type: types.SAVE_EDIT_BOOK,
   book

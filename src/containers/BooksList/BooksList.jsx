@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useMemo } from 'react'
-import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -85,4 +84,4 @@ BooksList.defaultProps = {
   books: {}
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(BooksList))
+export default connect(mapStateToProps, mapDispatchToProps)(BooksList)

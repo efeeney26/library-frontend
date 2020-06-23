@@ -1,24 +1,31 @@
 import React, { useCallback } from 'react'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Form as FinalForm, Field } from 'react-final-form'
 
-import { selectors } from '../../__data__'
+import { actions, selectors } from '../../__data__'
 import { Button, Form, LabeledInput, LabeledTextarea } from '../../components'
 import { getTableData } from '../utils'
 
 import styles from '../AddBook/AddBook.module.css'
 
 const BookDescription = (props) => {
-  const { bookState } = props
+  const { bookState, updateBook } = props
+  const history = useHistory()
   const { book, scheme } = bookState
   // TODO лишняя вложенность массивов
   const arrayData = (book && getTableData(book, scheme)) || []
-  const [data] = arrayData
+  const [bookData] = arrayData
 
   const onSubmit = useCallback(values => {
-    console.log('val', values)
-  }, [])
+    updateBook(values, book[0].id)
+      .then(res => {
+        const { data: { message } } = res
+        alert(message)
+        history.goBack()
+      })
+  }, [book, history, updateBook])
 
   return (
     <FinalForm
@@ -27,7 +34,7 @@ const BookDescription = (props) => {
         <Form
           onSubmit={handleSubmit}
         >
-          {data?.length && data.map(({ key, type, value, ...rest }) => (
+          {bookData?.length && bookData.map(({ key, type, value, ...rest }) => (
             <Field
               key={key}
               name={key}
@@ -58,15 +65,20 @@ const mapStateToProps = (state) => ({
   bookState: selectors.getBook(state)
 })
 
+const mapDispatchToProps = ({
+  updateBook: actions.updateBook
+})
+
 BookDescription.propTypes = {
   bookState: PropTypes.shape({
     book: PropTypes.array,
     scheme: PropTypes.arrayOf(PropTypes.object).isRequired
-  })
+  }),
+  updateBook: PropTypes.func.isRequired
 }
 
 BookDescription.defaultProps = {
   bookState: {}
 }
 
-export default connect(mapStateToProps)(BookDescription)
+export default connect(mapStateToProps, mapDispatchToProps)(BookDescription)
