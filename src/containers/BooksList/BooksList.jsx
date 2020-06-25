@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { actions, selectors, API } from '../../__data__'
+import { LIST_VIEW } from '../../constants'
 import { Table, Spinner, ErrorBanner, BookCardBlock } from '../../components'
 import { getSchemeKeysArray, getArrayData } from '../utils'
 
-import { ContentHeader } from './components'
+import { BookListHeader } from './components'
 
 const BooksList = (props) => {
   const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView } = props
@@ -17,7 +18,7 @@ const BooksList = (props) => {
     fetchBooks()
   }, [fetchBooks])
 
-  const handleDeleteData = (id) => {
+  const handleDeleteData = useCallback((id) => {
     if (window.confirm('Вы точно хотите удалить книгу?')) {
       deleteBook(API.deleteBook, { id })
         .then(res => {
@@ -26,29 +27,43 @@ const BooksList = (props) => {
           document.location.reload(true)
         })
     }
-  }
+  }, [deleteBook])
 
-  const handleEditData = (id) => {
+  const handleEditData = useCallback((id) => {
     const editBook = booksList.find(book => book.id === id)
     saveBookById(editBook)
     history.push(`/books/${id}`)
-  }
+  }, [booksList, history, saveBookById])
+
+  const setViewData = useCallback((view) => {
+    switch (view) {
+      case LIST_VIEW.table:
+        return (
+          <Table
+            tableHeaders={tableHeaders}
+            tableData={tableData}
+            onDeleteData={handleDeleteData}
+            onEditData={handleEditData}
+          />
+        )
+      case LIST_VIEW.card:
+        return (
+          <BookCardBlock/>
+        )
+      default:
+        return LIST_VIEW.table
+    }
+  }, [handleDeleteData, handleEditData, tableData, tableHeaders])
 
   return (
     <>
       {isFetching && <Spinner />}
       {isError && <ErrorBanner />}
-      <ContentHeader
+      <BookListHeader
         setView={setBooksView}
       />
-      {!isFetching && tableData?.length && view === 'table'
-        ? <Table
-          tableHeaders={tableHeaders}
-          tableData={tableData}
-          onDeleteData={handleDeleteData}
-          onEditData={handleEditData}
-        />
-        : <BookCardBlock/>
+      {!isFetching && tableData?.length &&
+        setViewData(view)
       }
     </>
   )

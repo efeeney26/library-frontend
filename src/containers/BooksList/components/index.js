@@ -1,5 +1,5 @@
-import ContentHeader from './ContentHeader/ContentHeader'
+import BookListHeader from './BookListHeader/BookListHeader'
 
 export {
-  ContentHeader
+  BookListHeader
 }

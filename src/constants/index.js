@@ -1,7 +1,10 @@
 import * as ROUTES from './routes'
 import { ICONS } from './icons'
 
-export const HEADER_ICONS = ['table', 'card']
+export const LIST_VIEW = {
+  table: 'table',
+  card: 'card'
+}
 
 export {
   ROUTES,

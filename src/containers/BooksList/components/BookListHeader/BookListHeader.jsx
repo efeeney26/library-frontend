@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { Icon, Link, SeparatedBlock, mergeTheme } from '../../../../components'
 import { ICONS, ROUTES } from '../../../../constants'
 
-import style from './ContentHeader.module.css'
+import style from './BookListHeader.module.css'
 
 const headerTheme = mergeTheme(SeparatedBlock.theme, { block: style.header })
 
-const ContentHeader = ({ setView }) => {
+const BookListHeader = ({ setView }) => {
   const handleTableIconClick = useCallback(() => {
     setView('table')
   }, [setView])
@@ -45,8 +45,8 @@ const ContentHeader = ({ setView }) => {
   )
 }
 
-ContentHeader.propTypes = {
+BookListHeader.propTypes = {
   setView: PropTypes.func.isRequired
 }
 
-export default ContentHeader
+export default BookListHeader
