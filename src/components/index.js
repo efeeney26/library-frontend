@@ -7,6 +7,8 @@ import Spinner from './Spinner/Spinner'
 import ErrorBanner from './ErrorBanner/ErrorBanner'
 import TextArea from './Textarea/Textarea'
 import Icon from './Icon/Icon'
+import SeparatedBlock from './SeparatedBlock/SeparatedBlock'
+import BookCardBlock from './BookCardBlock/BookCardBlock'
 import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
@@ -19,6 +21,8 @@ export {
   ErrorBanner,
   TextArea,
   Icon,
+  SeparatedBlock,
+  BookCardBlock,
   LabeledInput,
   LabeledTextarea
 }

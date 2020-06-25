@@ -1,0 +1,9 @@
+@import "../../../../components/utils/styles/offsets.config.css";
+
+.iconsContainer > :not(:last-child) {
+    margin-right: var(--offset-sm);
+}
+
+.header {
+    padding-bottom: 10px;
+}

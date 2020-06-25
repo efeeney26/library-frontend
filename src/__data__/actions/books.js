@@ -25,3 +25,8 @@ export const fetchBooks = () => (dispatch) => {
       console.log('An error occurred.', err)
     })
 }
+
+export const setView = (view) => ({
+  type: types.SET_BOOKS_VIEW,
+  view
+})

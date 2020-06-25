@@ -20,5 +20,5 @@ code {
 #root {
   background-color: var(--main-background-color);
   color: var(--main-text-color);
-  padding: 0 50px;
+  min-height: 100vh;
 }

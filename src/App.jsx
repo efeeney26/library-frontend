@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { Header } from './containers'
-
-import AppRouter from './AppRouter'
+import { Header, Content } from './containers'
 
 import style from './App.module.css'
 
@@ -13,7 +11,7 @@ function App () {
         <Header />
       </section>
       <section className={style.content}>
-        <AppRouter />
+        <Content />
       </section>
     </>
   )

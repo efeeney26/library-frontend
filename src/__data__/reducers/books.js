@@ -20,6 +20,11 @@ const books = (state = BOOKS_INITIAL_STATE, action) => {
         isFetching: false,
         isError: true
       }
+    case types.SET_BOOKS_VIEW:
+      return {
+        ...state,
+        view: action.view
+      }
     default:
       return state
   }
