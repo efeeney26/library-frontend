@@ -1,15 +1,19 @@
 import React from 'react'
 
-import AppRouter from './AppRouter'
+import { Header, Content } from './containers'
 
 import style from './App.module.css'
 
 function App () {
   return (
-    <div className={style.mainContainer}>
-      <h1>Library</h1>
-      <AppRouter />
-    </div>
+    <>
+      <section className={style.header}>
+        <Header />
+      </section>
+      <section className={style.content}>
+        <Content />
+      </section>
+    </>
   )
 }
 

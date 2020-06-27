@@ -16,3 +16,7 @@
 .red path {
     fill: var(--red);
 }
+
+.white path {
+    fill: var(--white)
+}

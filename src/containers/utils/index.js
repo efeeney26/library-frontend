@@ -25,8 +25,7 @@ export const mergeSchemeWithData = (scheme, itemData, data) => {
   })
 }
 
-// TODO поправить название ф-ии
-export const getTableData = (data, scheme) => {
+export const getArrayData = (data, scheme) => {
   const tableKeys = getSchemeKeysArray(scheme, 'key')
   if (!data?.length) {
     return null

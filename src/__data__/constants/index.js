@@ -4,7 +4,8 @@ export const BOOKS_INITIAL_STATE = {
   books: [],
   isFetching: false,
   isError: false,
-  scheme: booksScheme
+  scheme: booksScheme,
+  view: 'table'
 }
 
 export const BOOK_INITIAL_STATE = {

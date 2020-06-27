@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { noop } from 'lodash'
 import { Form as FinalForm, Field } from 'react-final-form'
 
-import { actions, selectors } from '../../__data__'
+import { actions, selectors, API } from '../../__data__'
 import { LabeledInput, LabeledTextarea, Form, Button } from '../../components'
 
 import styles from './AddBook.module.css'
@@ -16,7 +16,7 @@ const AddBook = (props) => {
   const history = useHistory()
 
   const onSubmit = useCallback(values => {
-    addBook(values)
+    addBook(API.addBook, { book: values })
       .then(res => {
         const { data: { message } } = res
         alert(message)
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-  addBook: actions.addBook
+  addBook: actions.fetchBook
 })
 
 AddBook.propTypes = {
