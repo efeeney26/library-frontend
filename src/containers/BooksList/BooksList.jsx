@@ -59,11 +59,13 @@ const BooksList = (props) => {
     <>
       {isFetching && <Spinner />}
       {isError && <ErrorBanner />}
-      <BookListHeader
-        setView={setBooksView}
-      />
       {!isFetching && tableData?.length &&
-        setViewData(view)
+        <>
+          <BookListHeader
+            setView={setBooksView}
+          />
+          {setViewData(view)}
+        </>
       }
     </>
   )
