@@ -6,7 +6,8 @@ const mergeRule = (objValue, srcValue) => cs(objValue, srcValue)
 export const mergeTheme = (...args) => mergeWith({}, ...args, mergeRule)
 
 export {
-  labeledComponent
+  labeledComponent,
+  fieldAdapter
 } from './hoc'
 
 export {

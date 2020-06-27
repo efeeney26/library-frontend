@@ -13,3 +13,8 @@
     font-size: var(--font-size-md);
     margin-bottom: var(--offset-xs);
 }
+
+.validator {
+    color: red;
+    margin-top: var(--offset-xs);
+}

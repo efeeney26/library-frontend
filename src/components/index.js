@@ -9,6 +9,7 @@ import TextArea from './Textarea/Textarea'
 import Icon from './Icon/Icon'
 import SeparatedBlock from './SeparatedBlock/SeparatedBlock'
 import BookCardBlock from './BookCardBlock/BookCardBlock'
+import Field from './Field/FIeld'
 import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
@@ -24,7 +25,8 @@ export {
   SeparatedBlock,
   BookCardBlock,
   LabeledInput,
-  LabeledTextarea
+  LabeledTextarea,
+  Field
 }
 
 export {

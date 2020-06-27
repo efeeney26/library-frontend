@@ -6,7 +6,7 @@ import { Form as FinalForm, Field } from 'react-final-form'
 
 import { actions, selectors, API } from '../../__data__'
 import { Button, Form, LabeledInput, LabeledTextarea } from '../../components'
-import { getArrayData } from '../utils'
+import { getArrayData, requiredValidator } from '../utils'
 
 import styles from '../AddBook/AddBook.module.css'
 
@@ -40,6 +40,7 @@ const BookDescription = (props) => {
               name={key}
               initialValue={value}
               component={type === 'textarea' ? LabeledTextarea : LabeledInput}
+              validate={rest.validator ? requiredValidator : null}
               {...rest}
             />
           ))}
