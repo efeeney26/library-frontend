@@ -3,10 +3,12 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { noop } from 'lodash'
-import { Form as FinalForm, Field } from 'react-final-form'
+import { Form as FinalForm } from 'react-final-form'
 
 import { actions, selectors, API } from '../../__data__'
-import { LabeledInput, LabeledTextarea, Form, Button } from '../../components'
+import { LabeledInput, LabeledTextarea, Form, Button, Field } from '../../components'
+
+import { requiredValidator } from '../utils'
 
 import styles from './AddBook.module.css'
 
@@ -36,6 +38,7 @@ const AddBook = (props) => {
               key={key}
               name={key}
               component={type === 'textarea' ? LabeledTextarea : LabeledInput}
+              validate={rest.validator ? requiredValidator : null}
               {...rest}
             />
           ))}

@@ -8,7 +8,8 @@ import ErrorBanner from './ErrorBanner/ErrorBanner'
 import TextArea from './Textarea/Textarea'
 import Icon from './Icon/Icon'
 import SeparatedBlock from './SeparatedBlock/SeparatedBlock'
-import BookCardBlock from './BookCardBlock/BookCardBlock'
+import BlockCard from './BlockCard/BlockCard'
+import Field from './Field/FIeld'
 import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
@@ -22,9 +23,10 @@ export {
   TextArea,
   Icon,
   SeparatedBlock,
-  BookCardBlock,
+  BlockCard,
   LabeledInput,
-  LabeledTextarea
+  LabeledTextarea,
+  Field
 }
 
 export {

@@ -36,3 +36,7 @@ export const getArrayData = (data, scheme) => {
     return mergeSchemeWithData(scheme, transformSchemeData, dataItem)
   })
 }
+
+export const requiredValidator = (value) => {
+  return value ? null : true
+}
