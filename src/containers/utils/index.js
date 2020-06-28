@@ -38,5 +38,5 @@ export const getArrayData = (data, scheme) => {
 }
 
 export const requiredValidator = (value) => {
-  return value ? null : 'Error'
+  return value ? null : true
 }
