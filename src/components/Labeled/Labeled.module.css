@@ -1,5 +1,6 @@
 @import "../utils/styles/offsets.config.css";
 @import "../utils/styles/font-sizes.config.css";
+@import "../utils/styles/colors.config.css";
 
 .labeled {
     display: flex;
@@ -15,6 +16,6 @@
 }
 
 .validator {
-    color: red;
+    color: var(--red);
     margin-top: var(--offset-xs);
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { actions, selectors, API } from '../../__data__'
 import { LIST_VIEW } from '../../constants'
-import { Table, Spinner, ErrorBanner, BookCardBlock } from '../../components'
+import { Table, Spinner, ErrorBanner, BlockCard } from '../../components'
 import { getSchemeKeysArray, getArrayData } from '../utils'
 
 import { BookListHeader } from './components'
@@ -48,7 +48,7 @@ const BooksList = (props) => {
         )
       case LIST_VIEW.card:
         return (
-          <BookCardBlock/>
+          <BlockCard/>
         )
       default:
         return LIST_VIEW.table
