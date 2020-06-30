@@ -1,9 +1,9 @@
 import { fetchBooks, setView } from './books'
-import { saveBookById, fetchBook } from './book'
+import { setEditBookById, fetchBook } from './book'
 
 export {
   fetchBooks,
   setView,
-  saveBookById,
+  setEditBookById,
   fetchBook
 }

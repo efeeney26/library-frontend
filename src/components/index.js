@@ -8,8 +8,10 @@ import ErrorBanner from './ErrorBanner/ErrorBanner'
 import TextArea from './Textarea/Textarea'
 import Icon from './Icon/Icon'
 import SeparatedBlock from './SeparatedBlock/SeparatedBlock'
-import BlockCard from './BlockCard/BlockCard'
+import Card from './Card/Card'
+import GroupCard from './GroupCard/GroupCard'
 import Field from './Field/FIeld'
+import ImageContainer from './ImageContainer/ImageContainer'
 import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
@@ -23,10 +25,12 @@ export {
   TextArea,
   Icon,
   SeparatedBlock,
-  BlockCard,
+  Card,
+  GroupCard,
   LabeledInput,
   LabeledTextarea,
-  Field
+  Field,
+  ImageContainer
 }
 
 export {

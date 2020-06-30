@@ -5,6 +5,12 @@ const booksScheme = [
     title: 'Id'
   },
   {
+    key: 'img',
+    type: 'img',
+    value: '',
+    title: 'Изображение'
+  },
+  {
     key: 'name',
     type: 'text',
     title: 'Название книги'

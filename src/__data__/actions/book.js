@@ -32,7 +32,7 @@ export const fetchBook = (apiMethod, { ...rest }) => async (dispatch) => {
   return response
 }
 
-export const saveBookById = (book) => ({
+export const setEditBookById = (book) => ({
   type: types.SAVE_EDIT_BOOK,
   book
 })

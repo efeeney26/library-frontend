@@ -1,17 +1,7 @@
-import { pick, transform } from 'lodash'
-
 export const getSchemeKeysArray = (scheme, key) => scheme.map((item) => item[key])
 
-export const transformDataObjToArray = (obj, key) => {
-  return transform(obj, (res, val) => {
-    res.push({
-      [key]: val && val.toString()
-    })
-  }, [])
-}
-
-export const mergeSchemeWithData = (scheme, itemData, data) => {
-  return scheme.map((schemeItem, i) => {
+export const mergeSchemeWithData = (data, scheme) => {
+  return scheme.map(schemeItem => {
     if (schemeItem.key === 'actions') {
       return {
         ...schemeItem,
@@ -20,21 +10,16 @@ export const mergeSchemeWithData = (scheme, itemData, data) => {
     }
     return {
       ...schemeItem,
-      ...itemData[i]
+      value: data[schemeItem.key] ? data[schemeItem.key].toString() : schemeItem.value
     }
   })
 }
 
-export const getArrayData = (data, scheme) => {
-  const tableKeys = getSchemeKeysArray(scheme, 'key')
+export const getMappedData = (data, scheme) => {
   if (!data?.length) {
     return null
   }
-  return data.map((dataItem) => {
-    const schemeData = pick(dataItem, tableKeys)
-    const transformSchemeData = transformDataObjToArray(schemeData, 'value')
-    return mergeSchemeWithData(scheme, transformSchemeData, dataItem)
-  })
+  return data.map((dataItem) => mergeSchemeWithData(dataItem, scheme))
 }
 
 export const requiredValidator = (value) => {

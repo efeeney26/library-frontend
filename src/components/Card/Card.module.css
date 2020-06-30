@@ -1,0 +1,12 @@
+@import "../utils/styles/colors.config.css";
+
+.card {
+    background-color: var(--gray);
+    padding: 10px;
+    border: 1px solid black;
+    min-height: 200px;
+    width: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}

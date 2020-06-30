@@ -6,7 +6,7 @@ import { Form as FinalForm, Field } from 'react-final-form'
 
 import { actions, selectors, API } from '../../__data__'
 import { Button, Form, LabeledInput, LabeledTextarea } from '../../components'
-import { getArrayData, requiredValidator } from '../utils'
+import { getMappedData, requiredValidator } from '../utils'
 
 import styles from '../AddBook/AddBook.module.css'
 
@@ -15,7 +15,7 @@ const BookDescription = (props) => {
   const history = useHistory()
   const { book, scheme } = bookState
   // TODO лишняя вложенность массивов
-  const arrayData = (book && getArrayData(book, scheme)) || []
+  const arrayData = (book && getMappedData(book, scheme)) || []
   const [bookData] = arrayData
 
   const onSubmit = useCallback(values => {
