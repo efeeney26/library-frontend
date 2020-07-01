@@ -1,7 +1,7 @@
 export const getSchemeKeysArray = (scheme, key) => scheme.map((item) => item[key])
 
-export const mergeSchemeWithData = (data, scheme) => {
-  return scheme.map(schemeItem => {
+export const mergeSchemeWithData = (data, scheme) => (
+  scheme.map(schemeItem => {
     if (schemeItem.key === 'actions') {
       return {
         ...schemeItem,
@@ -10,10 +10,10 @@ export const mergeSchemeWithData = (data, scheme) => {
     }
     return {
       ...schemeItem,
-      value: data[schemeItem.key] ? data[schemeItem.key].toString() : schemeItem.value
+      value: data[schemeItem.key] || schemeItem.value
     }
   })
-}
+)
 
 export const getMappedData = (data, scheme) => {
   if (!data?.length) {

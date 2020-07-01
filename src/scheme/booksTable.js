@@ -1,4 +1,4 @@
-const booksScheme = [
+const booksTableScheme = [
   {
     key: 'id',
     type: 'text',
@@ -46,4 +46,4 @@ const booksScheme = [
   }
 ]
 
-export default booksScheme
+export default booksTableScheme

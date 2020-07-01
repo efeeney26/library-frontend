@@ -11,12 +11,10 @@ import { BookListHeader } from './components'
 
 const BooksList = (props) => {
   const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView } = props
-  const { books: booksList, isFetching, isError, scheme, view, schemeCards } = books
-  const tableHeaders = useMemo(() => getSchemeKeysArray(scheme, 'title'), [scheme])
-  const tableData = getMappedData(booksList, scheme)
-  console.log('tab', tableData)
-  const cardsData = getMappedData(booksList, schemeCards)
-  console.log('cards', cardsData)
+  const { books: booksList, isFetching, isError, schemeTable, view, schemeCards } = books
+  const tableHeaders = useMemo(() => getSchemeKeysArray(schemeTable, 'title'), [schemeTable])
+  const tableData = useMemo(() => getMappedData(booksList, schemeTable), [booksList, schemeTable])
+  const cardsData = useMemo(() => getMappedData(booksList, schemeCards), [booksList, schemeCards])
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
@@ -52,7 +50,7 @@ const BooksList = (props) => {
       case LIST_VIEW.card:
         return (
           <GroupCard>
-            {booksList.map((item, i) => (
+            {cardsData.map((item, i) => (
               <Card
                 key={i}
                 data={item}
@@ -69,7 +67,7 @@ const BooksList = (props) => {
     <>
       {isFetching && <Spinner />}
       {isError && <ErrorBanner />}
-      {!isFetching && tableData?.length &&
+      {!isFetching && !isError && tableData?.length &&
         <>
           <BookListHeader
             setView={setBooksView}
