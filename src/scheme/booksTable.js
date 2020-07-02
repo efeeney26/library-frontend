@@ -1,13 +1,7 @@
 const booksTableScheme = [
   {
-    key: 'id',
-    type: 'text',
-    title: 'Id'
-  },
-  {
     key: 'img',
     type: 'img',
-    value: '',
     title: 'Изображение'
   },
   {

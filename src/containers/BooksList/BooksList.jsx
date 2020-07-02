@@ -15,6 +15,7 @@ const BooksList = (props) => {
   const tableHeaders = useMemo(() => getSchemeKeysArray(schemeTable, 'title'), [schemeTable])
   const tableData = useMemo(() => getMappedData(booksList, schemeTable), [booksList, schemeTable])
   const cardsData = useMemo(() => getMappedData(booksList, schemeCards), [booksList, schemeCards])
+
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
@@ -53,6 +54,8 @@ const BooksList = (props) => {
             {cardsData.map((item, i) => (
               <Card
                 key={i}
+                onEditData={handleEditData}
+                onDeleteData={handleDeleteData}
                 data={item}
               />
             ))}
@@ -61,7 +64,7 @@ const BooksList = (props) => {
       default:
         return LIST_VIEW.table
     }
-  }, [handleDeleteData, handleEditData, tableData, tableHeaders, booksList])
+  }, [handleDeleteData, handleEditData, tableData, tableHeaders, cardsData])
 
   return (
     <>

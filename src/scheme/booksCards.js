@@ -1,18 +1,29 @@
 const booksCardsScheme = [
   {
     key: 'img',
-    type: 'text',
-    value: 'Lol'
+    type: 'img'
   },
   {
     key: 'name',
-    type: 'text',
-    title: 'Название книги'
+    type: 'text'
   },
   {
     key: 'author',
-    type: 'text',
-    title: 'Автор книги'
+    type: 'text'
+  },
+  {
+    key: 'actions',
+    type: 'icon',
+    action: 'edit',
+    icon: 'editIcon',
+    color: 'blue'
+  },
+  {
+    key: 'actions',
+    type: 'icon',
+    action: 'delete',
+    icon: 'deleteIcon',
+    color: 'red'
   }
 ]
 

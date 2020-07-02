@@ -22,6 +22,4 @@ export const getMappedData = (data, scheme) => {
   return data.map((dataItem) => mergeSchemeWithData(dataItem, scheme))
 }
 
-export const requiredValidator = (value) => {
-  return value ? null : true
-}
+export const requiredValidator = (value) => !value

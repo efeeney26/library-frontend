@@ -6,12 +6,13 @@ import { noop } from 'lodash'
 import defaultTheme from './Icon.module.css'
 
 const Icon = (props) => {
-  const { size, name, colorScheme, theme, onClick } = props
+  const { id, size, name, colorScheme, theme, onClick } = props
 
   return (
     <span
-      className={defaultTheme.icon}
+      className={theme.icon}
       onClick={onClick}
+      id={id}
     >
       <svg
         className={cs(theme[colorScheme])}
@@ -31,6 +32,7 @@ const Icon = (props) => {
 }
 
 Icon.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.arrayOf(PropTypes.string).isRequired,
   size: PropTypes.number,
   colorScheme: PropTypes.string,
@@ -41,11 +43,12 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
+  id: '',
   size: 24,
   onClick: noop(),
   theme: defaultTheme
 }
 
-Icon.defaultTheme = defaultTheme
+Icon.theme = defaultTheme
 
 export default Icon

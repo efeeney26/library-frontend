@@ -1,12 +1,23 @@
 @import "../utils/styles/colors.config.css";
 
 .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     background-color: var(--gray);
     padding: 10px;
     border: 1px solid black;
-    min-height: 200px;
+    min-height: 300px;
     width: 200px;
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
 }

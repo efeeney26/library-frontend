@@ -5,7 +5,7 @@ const ImageContainer = ({ img, alt, size }) => (
   <img
     src={img}
     alt={alt}
-    width={`${size}px`}
+    width={`${size - 20}px`}
     height={`${size}px`}
   />
 )
