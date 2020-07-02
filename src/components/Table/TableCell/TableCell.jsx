@@ -34,8 +34,10 @@ const TableCell = ({ cellData }) => {
         return <Link label={cellData.linkTitle} onClick={handleClick} to={`${cellData.href}/${cellData.itemId}`}/>
       case 'img':
         return <ImageContainer img={cellData.value || unloaded} alt="BookImage" size="100"/>
+      case 'text':
+        return <div>{cellData.value}</div>
       default:
-        return cellData.value
+        return null
     }
   }
 

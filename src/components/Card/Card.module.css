@@ -1,4 +1,5 @@
 @import "../utils/styles/colors.config.css";
+@import "../utils/styles/font-sizes.config.css";
 
 .card {
     position: relative;
@@ -20,4 +21,5 @@
     position: absolute;
     right: 0;
     top: 0;
+    margin: 5px 5px 0 0;
 }

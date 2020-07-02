@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { noop } from 'lodash'
 
@@ -15,19 +15,16 @@ const iconTheme = mergeTheme(Icon.theme, { icon: style.icon })
 
 const Card = (props) => {
   const { data, onEditData, onDeleteData } = props
+  const bookId = data.find((item) => item.key === 'id').value
 
   const [isActionsVisible, setActionsVisible] = useState(false)
 
-  const handleClick = (dataSet) => () => {
-    switch (dataSet.action) {
-      case 'edit':
-        return onEditData(dataSet.itemId)
-      case 'delete':
-        return onDeleteData(dataSet.itemId)
-      default:
-        return noop()
-    }
-  }
+  const handleClick = useCallback(() => onEditData(bookId), [onEditData, bookId])
+
+  const handleIconClick = useCallback((e) => {
+    e.stopPropagation()
+    onDeleteData(bookId)
+  }, [onDeleteData, bookId])
 
   const handleMouseOver = () => setActionsVisible(true)
   const handleMouseLeave = () => setActionsVisible(false)
@@ -41,7 +38,7 @@ const Card = (props) => {
       case 'author':
         return <p>{dataSet.value}</p>
       case 'actions':
-        return isActionsVisible && <Icon id={dataSet.action} name={ICONS[dataSet.icon]} theme={iconTheme} size={26} onClick={handleClick(dataSet)} colorScheme={dataSet.color} />
+        return isActionsVisible && <Icon id={dataSet.action} name={ICONS[dataSet.icon]} theme={iconTheme} size={26} onClick={handleIconClick} colorScheme={dataSet.color} />
       default:
         return ''
     }
@@ -50,6 +47,7 @@ const Card = (props) => {
   return (
     <div
       className={style.card}
+      onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
     >

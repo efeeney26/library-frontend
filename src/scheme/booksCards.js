@@ -1,5 +1,8 @@
 const booksCardsScheme = [
   {
+    key: 'id'
+  },
+  {
     key: 'img',
     type: 'img'
   },
@@ -10,13 +13,6 @@ const booksCardsScheme = [
   {
     key: 'author',
     type: 'text'
-  },
-  {
-    key: 'actions',
-    type: 'icon',
-    action: 'edit',
-    icon: 'editIcon',
-    color: 'blue'
   },
   {
     key: 'actions',
