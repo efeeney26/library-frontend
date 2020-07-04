@@ -36,9 +36,9 @@ const Card = (props) => {
       case 'img':
         return (<ImageContainer img={dataSet.value || unloaded} alt="BookImage" theme={imageTheme} />)
       case 'name':
-        return <h4 className={cs(style.transition, style.description)}>{dataSet.value}</h4>
+        return <h4 className={cs(style.transitionDescription, style.nameDescription)}>{dataSet.value}</h4>
       case 'author':
-        return <p className={cs(style.transition, style.description)}>{dataSet.value}</p>
+        return <p className={cs(style.transitionDescription, style.description)}>{dataSet.value}</p>
       case 'actions':
         return isActionsVisible && <Icon id={dataSet.action} name={ICONS[dataSet.icon]} theme={iconTheme} size={26} onClick={handleIconClick} colorScheme={dataSet.color} />
       default:
