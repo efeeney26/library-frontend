@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useCallback } from 'react'
+import React, { useEffect, useMemo, useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { actions, selectors, API } from '../../__data__'
 import { LIST_VIEW } from '../../constants'
-import { Table, Spinner, ErrorBanner, Card, GroupCard } from '../../components'
+import { Table, Spinner, ErrorBanner, Card, GroupCard, Pagination } from '../../components'
 import { getSchemeKeysArray, getMappedData } from '../utils'
 
 import { BookListHeader } from './components'
@@ -12,9 +12,19 @@ import { BookListHeader } from './components'
 const BooksList = (props) => {
   const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView } = props
   const { books: booksList, isFetching, isError, schemeTable, view, schemeCards } = books
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [booksPerPage] = useState(5)
+
+  const indexOfLastBook = currentPage * booksPerPage
+  const indexOfFirstBook = indexOfLastBook - booksPerPage
+  const currentBooks = booksList.slice(indexOfFirstBook, indexOfLastBook)
+
   const tableHeaders = useMemo(() => getSchemeKeysArray(schemeTable, 'title'), [schemeTable])
-  const tableData = useMemo(() => getMappedData(booksList, schemeTable), [booksList, schemeTable])
-  const cardsData = useMemo(() => getMappedData(booksList, schemeCards), [booksList, schemeCards])
+  const tableData = useMemo(() => getMappedData(currentBooks, schemeTable), [currentBooks, schemeTable])
+  const cardsData = useMemo(() => getMappedData(currentBooks, schemeCards), [currentBooks, schemeCards])
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
   useEffect(() => {
     fetchBooks()
@@ -76,6 +86,7 @@ const BooksList = (props) => {
             setView={setBooksView}
           />
           {setViewData(view)}
+          <Pagination itemsPerPage={booksPerPage} totalItems={booksList.length} paginate={paginate} />
         </>
       }
     </>

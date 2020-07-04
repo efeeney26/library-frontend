@@ -12,6 +12,7 @@ import Card from './Card/Card'
 import GroupCard from './GroupCard/GroupCard'
 import Field from './Field/FIeld'
 import ImageContainer from './ImageContainer/ImageContainer'
+import Pagination from './Pagination/Pagination'
 import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
@@ -30,7 +31,8 @@ export {
   LabeledInput,
   LabeledTextarea,
   Field,
-  ImageContainer
+  ImageContainer,
+  Pagination
 }
 
 export {
