@@ -48,7 +48,7 @@ const Card = (props) => {
 
   return (
     <div
-      className={style.card}
+      className={cs(style.card, style.transitionCard)}
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
