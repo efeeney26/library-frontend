@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { noop } from 'lodash'
+import cs from 'classnames'
 
 import { unloaded } from '../../assets'
 import { ICONS } from '../../constants'
@@ -12,6 +13,7 @@ import Icon from '../Icon/Icon'
 import style from './Card.module.css'
 
 const iconTheme = mergeTheme(Icon.theme, { icon: style.icon })
+const imageTheme = mergeTheme(ImageContainer.theme, { image: style.image })
 
 const Card = (props) => {
   const { data, onEditData, onDeleteData } = props
@@ -32,11 +34,11 @@ const Card = (props) => {
   const setData = (dataSet) => {
     switch (dataSet.key) {
       case 'img':
-        return (<ImageContainer img={dataSet.value || unloaded} alt="BookImage" size="160"/>)
+        return (<ImageContainer img={dataSet.value || unloaded} alt="BookImage" theme={imageTheme} />)
       case 'name':
-        return <h4>{dataSet.value}</h4>
+        return <h4 className={cs(style.transition, style.description)}>{dataSet.value}</h4>
       case 'author':
-        return <p>{dataSet.value}</p>
+        return <p className={cs(style.transition, style.description)}>{dataSet.value}</p>
       case 'actions':
         return isActionsVisible && <Icon id={dataSet.action} name={ICONS[dataSet.icon]} theme={iconTheme} size={26} onClick={handleIconClick} colorScheme={dataSet.color} />
       default:

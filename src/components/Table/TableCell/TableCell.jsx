@@ -33,7 +33,7 @@ const TableCell = ({ cellData }) => {
       case 'link':
         return <Link label={cellData.linkTitle} onClick={handleClick} to={`${cellData.href}/${cellData.itemId}`}/>
       case 'img':
-        return <ImageContainer img={cellData.value || unloaded} alt="BookImage" size="100"/>
+        return <ImageContainer img={cellData.value || unloaded} alt="BookImage" />
       case 'text':
         return <div>{cellData.value}</div>
       default:

@@ -1,25 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const ImageContainer = ({ img, alt, size }) => (
+import defaultTheme from './ImageContainer.module.css'
+
+const ImageContainer = ({ img, alt, theme }) => (
   <img
     src={img}
     alt={alt}
-    width={`${size - 20}px`}
-    height={`${size}px`}
+    className={theme.image}
   />
 )
 
 ImageContainer.propTypes = {
   img: PropTypes.string,
   alt: PropTypes.string,
-  size: PropTypes.string
+  theme: PropTypes.shape({
+    image: PropTypes.string
+  })
 }
 
 ImageContainer.defaultProps = {
   img: '',
   alt: 'Unloaded',
-  size: ''
+  theme: defaultTheme
 }
+
+ImageContainer.theme = defaultTheme
 
 export default ImageContainer

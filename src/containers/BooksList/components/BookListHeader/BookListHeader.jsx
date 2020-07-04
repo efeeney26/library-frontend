@@ -23,16 +23,16 @@ const BookListHeader = ({ setView }) => {
     >
       <div className={style.iconsContainer}>
         <Icon
-          name={ICONS.table}
-          size={30}
-          colorScheme="white"
-          onClick={handleTableIconClick}
-        />
-        <Icon
           name={ICONS.card}
           size={30}
           colorScheme="white"
           onClick={handleCardIconClick}
+        />
+        <Icon
+          name={ICONS.table}
+          size={30}
+          colorScheme="white"
+          onClick={handleTableIconClick}
         />
       </div>
       <Link
