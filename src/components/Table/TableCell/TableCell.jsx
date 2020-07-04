@@ -2,8 +2,11 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { noop } from 'lodash'
 
+import { unloaded } from '../../../assets'
+
 import Icon from '../../Icon/Icon'
 import Link from '../../Link/Link'
+import ImageContainer from '../../ImageContainer/ImageContainer'
 import { ICONS } from '../../../constants'
 
 import { useTableContext } from '../Table'
@@ -30,9 +33,11 @@ const TableCell = ({ cellData }) => {
       case 'link':
         return <Link label={cellData.linkTitle} onClick={handleClick} to={`${cellData.href}/${cellData.itemId}`}/>
       case 'img':
-        return 'img'
+        return <ImageContainer img={cellData.value || unloaded} alt="BookImage" />
+      case 'text':
+        return <div>{cellData.value}</div>
       default:
-        return cellData.value
+        return null
     }
   }
 

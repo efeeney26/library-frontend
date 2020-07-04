@@ -1,7 +1,9 @@
-import booksScheme from './books'
+import booksTableScheme from './booksTable'
 import bookScheme from './book'
+import booksCardsScheme from './booksCards'
 
 export {
-  booksScheme,
+  booksTableScheme,
+  booksCardsScheme,
   bookScheme
 }

@@ -4,16 +4,18 @@ import { connect } from 'react-redux'
 
 import { actions, selectors, API } from '../../__data__'
 import { LIST_VIEW } from '../../constants'
-import { Table, Spinner, ErrorBanner, BlockCard } from '../../components'
-import { getSchemeKeysArray, getArrayData } from '../utils'
+import { Table, Spinner, ErrorBanner, Card, GroupCard } from '../../components'
+import { getSchemeKeysArray, getMappedData } from '../utils'
 
 import { BookListHeader } from './components'
 
 const BooksList = (props) => {
   const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView } = props
-  const { books: booksList, isFetching, isError, scheme, view } = books
-  const tableHeaders = useMemo(() => getSchemeKeysArray(scheme, 'title'), [scheme])
-  const tableData = useMemo(() => getArrayData(booksList, scheme), [booksList, scheme])
+  const { books: booksList, isFetching, isError, schemeTable, view, schemeCards } = books
+  const tableHeaders = useMemo(() => getSchemeKeysArray(schemeTable, 'title'), [schemeTable])
+  const tableData = useMemo(() => getMappedData(booksList, schemeTable), [booksList, schemeTable])
+  const cardsData = useMemo(() => getMappedData(booksList, schemeCards), [booksList, schemeCards])
+
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
@@ -48,18 +50,27 @@ const BooksList = (props) => {
         )
       case LIST_VIEW.card:
         return (
-          <BlockCard/>
+          <GroupCard>
+            {cardsData.map((item, i) => (
+              <Card
+                key={i}
+                onEditData={handleEditData}
+                onDeleteData={handleDeleteData}
+                data={item}
+              />
+            ))}
+          </GroupCard>
         )
       default:
         return LIST_VIEW.table
     }
-  }, [handleDeleteData, handleEditData, tableData, tableHeaders])
+  }, [handleDeleteData, handleEditData, tableData, tableHeaders, cardsData])
 
   return (
     <>
       {isFetching && <Spinner />}
       {isError && <ErrorBanner />}
-      {!isFetching && tableData?.length &&
+      {!isFetching && !isError && tableData?.length &&
         <>
           <BookListHeader
             setView={setBooksView}
@@ -77,7 +88,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = ({
   fetchBooks: actions.fetchBooks,
-  saveBookById: actions.saveBookById,
+  saveBookById: actions.setEditBookById,
   deleteBook: actions.fetchBook,
   setBooksView: actions.setView
 })

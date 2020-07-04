@@ -1,8 +1,8 @@
-const booksScheme = [
+const booksTableScheme = [
   {
-    key: 'id',
-    type: 'text',
-    title: 'Id'
+    key: 'img',
+    type: 'img',
+    title: 'Изображение'
   },
   {
     key: 'name',
@@ -40,4 +40,4 @@ const booksScheme = [
   }
 ]
 
-export default booksScheme
+export default booksTableScheme

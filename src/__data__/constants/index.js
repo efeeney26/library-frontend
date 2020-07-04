@@ -1,11 +1,12 @@
-import { bookScheme, booksScheme } from '../../scheme'
+import { bookScheme, booksTableScheme, booksCardsScheme } from '../../scheme'
 
 export const BOOKS_INITIAL_STATE = {
   books: [],
   isFetching: false,
   isError: false,
-  scheme: booksScheme,
-  view: 'table'
+  schemeTable: booksTableScheme,
+  schemeCards: booksCardsScheme,
+  view: 'card'
 }
 
 export const BOOK_INITIAL_STATE = {

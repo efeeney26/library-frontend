@@ -1,0 +1,46 @@
+@import "../utils/styles/colors.config.css";
+@import "../utils/styles/font-sizes.config.css";
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--gray);
+    padding: 10px;
+    border: 1px solid black;
+    min-height: 300px;
+    width: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 5px 5px var(--gray);
+    min-height: 305px;
+    width: 205px;
+}
+
+.card:hover .description {
+    margin-top: -500px;
+}
+
+.card:hover .image {
+    padding: 0;
+    height: 300px;
+}
+
+.transition {
+    transition: .3s cubic-bezier(.3, 0, 0, 1.3)
+}
+
+.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 5px 5px 0 0;
+}

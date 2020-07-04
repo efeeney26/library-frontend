@@ -10,7 +10,7 @@ const Icon = (props) => {
 
   return (
     <span
-      className={defaultTheme.icon}
+      className={theme.icon}
       onClick={onClick}
     >
       <svg
@@ -46,6 +46,6 @@ Icon.defaultProps = {
   theme: defaultTheme
 }
 
-Icon.defaultTheme = defaultTheme
+Icon.theme = defaultTheme
 
 export default Icon
