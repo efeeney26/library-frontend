@@ -15,14 +15,12 @@
     border-radius: 10px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
     overflow: hidden;
 }
 
 .card:hover {
     box-shadow: 0 5px 5px var(--gray);
-    min-height: 305px;
-    width: 205px;
+    transform: translateY(-7px);
 }
 
 .card:hover .description {

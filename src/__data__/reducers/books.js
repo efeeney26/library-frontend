@@ -25,6 +25,11 @@ const books = (state = BOOKS_INITIAL_STATE, action) => {
         ...state,
         view: action.view
       }
+    case types.SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.page
+      }
     default:
       return state
   }

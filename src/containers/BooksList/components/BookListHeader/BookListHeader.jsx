@@ -7,6 +7,7 @@ import { ICONS, ROUTES } from '../../../../constants'
 import style from './BookListHeader.module.css'
 
 const headerTheme = mergeTheme(SeparatedBlock.theme, { block: style.header })
+const iconTheme = mergeTheme(Icon.theme, { icon: style.icon })
 
 const BookListHeader = ({ setView }) => {
   const handleTableIconClick = useCallback(() => {
@@ -27,12 +28,14 @@ const BookListHeader = ({ setView }) => {
           size={30}
           colorScheme="white"
           onClick={handleCardIconClick}
+          theme={iconTheme}
         />
         <Icon
           name={ICONS.table}
           size={30}
           colorScheme="white"
           onClick={handleTableIconClick}
+          theme={iconTheme}
         />
       </div>
       <Link

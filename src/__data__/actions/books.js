@@ -30,3 +30,8 @@ export const setView = (view) => ({
   type: types.SET_BOOKS_VIEW,
   view
 })
+
+export const setCurrentPage = (page) => ({
+  type: types.SET_CURRENT_PAGE,
+  page
+})
