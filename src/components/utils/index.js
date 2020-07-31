@@ -14,7 +14,7 @@ export const fillArrWithIndex = (length) => {
 }
 
 export {
-  labeledComponent,
+  getWrappedLabeledComponent,
   fieldAdapter
 } from './hoc'
 

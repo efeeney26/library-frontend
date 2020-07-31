@@ -1,4 +1,4 @@
-import { fetchBooks, setView, setCurrentPage } from './books'
+import { fetchBooks, setView, setCurrentPage, setFilteredBooks } from './books'
 import { setEditBookById, fetchBook } from './book'
 
 export {
@@ -6,5 +6,6 @@ export {
   setView,
   setEditBookById,
   fetchBook,
-  setCurrentPage
+  setCurrentPage,
+  setFilteredBooks
 }
