@@ -6,7 +6,9 @@ export const BOOKS_INITIAL_STATE = {
   isError: false,
   schemeTable: booksTableScheme,
   schemeCards: booksCardsScheme,
-  view: 'card'
+  view: 'card',
+  booksPerPage: 5,
+  currentPage: 1
 }
 
 export const BOOK_INITIAL_STATE = {

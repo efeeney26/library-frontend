@@ -1,3 +1,11 @@
+
+export const getCurrentItems = (itemsList, currentPage, itemsPerPage) => {
+  const indexOfLastItem = currentPage * itemsPerPage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage
+
+  return itemsList.slice(indexOfFirstItem, indexOfLastItem)
+}
+
 export const getSchemeKeysArray = (scheme, key) => scheme.map((item) => item[key])
 
 export const mergeSchemeWithData = (data, scheme) => (

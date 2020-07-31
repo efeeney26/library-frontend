@@ -17,15 +17,15 @@ const imageTheme = mergeTheme(ImageContainer.theme, { image: style.image })
 
 const Card = (props) => {
   const { data, onEditData, onDeleteData } = props
-  const bookId = data.find((item) => item.key === 'id').value
+  const bookId = data.find((item) => item.key === 'id')?.value
 
   const [isActionsVisible, setActionsVisible] = useState(false)
 
-  const handleClick = useCallback(() => onEditData(bookId), [onEditData, bookId])
+  const handleClick = useCallback(() => bookId && onEditData(bookId), [onEditData, bookId])
 
   const handleIconClick = useCallback((e) => {
     e.stopPropagation()
-    onDeleteData(bookId)
+    bookId && onDeleteData(bookId)
   }, [onDeleteData, bookId])
 
   const handleMouseOver = () => setActionsVisible(true)

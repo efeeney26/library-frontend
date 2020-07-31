@@ -1,0 +1,31 @@
+@import "../utils/styles/colors.config.css";
+
+.container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > :not(:last-child) {
+    margin-right: 5px;
+}
+
+.page {
+    cursor: pointer;
+    border: 1px solid var(--white);
+    border-radius: 50px;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.page:hover {
+    background-color: var(--blue);
+}
+
+.active {
+    background-color: var(--blue);
+}

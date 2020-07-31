@@ -4,17 +4,23 @@ import { connect } from 'react-redux'
 
 import { actions, selectors, API } from '../../__data__'
 import { LIST_VIEW } from '../../constants'
-import { Table, Spinner, ErrorBanner, Card, GroupCard } from '../../components'
-import { getSchemeKeysArray, getMappedData } from '../utils'
+import { Table, Spinner, ErrorBanner, Card, GroupCard, Pagination } from '../../components'
+import { getSchemeKeysArray, getMappedData, getCurrentItems } from '../utils'
 
 import { BookListHeader } from './components'
 
 const BooksList = (props) => {
-  const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView } = props
-  const { books: booksList, isFetching, isError, schemeTable, view, schemeCards } = books
+  const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView, setCurrentPage } = props
+  const { books: booksList, isFetching, isError, schemeTable, view, schemeCards, booksPerPage, currentPage } = books
+
+  const currentBooks = useMemo(() => getCurrentItems(booksList, currentPage, booksPerPage), [booksList, currentPage, booksPerPage])
+
   const tableHeaders = useMemo(() => getSchemeKeysArray(schemeTable, 'title'), [schemeTable])
-  const tableData = useMemo(() => getMappedData(booksList, schemeTable), [booksList, schemeTable])
-  const cardsData = useMemo(() => getMappedData(booksList, schemeCards), [booksList, schemeCards])
+  const tableData = useMemo(() => getMappedData(currentBooks, schemeTable), [currentBooks, schemeTable])
+
+  const cardsData = useMemo(() => getMappedData(currentBooks, schemeCards), [currentBooks, schemeCards])
+
+  const handlePaginate = useCallback((pageNumber) => setCurrentPage(pageNumber), [setCurrentPage])
 
   useEffect(() => {
     fetchBooks()
@@ -76,6 +82,12 @@ const BooksList = (props) => {
             setView={setBooksView}
           />
           {setViewData(view)}
+          <Pagination
+            itemsPerPage={booksPerPage}
+            totalItems={booksList.length}
+            paginate={handlePaginate}
+            activePage={currentPage}
+          />
         </>
       }
     </>
@@ -90,7 +102,8 @@ const mapDispatchToProps = ({
   fetchBooks: actions.fetchBooks,
   saveBookById: actions.setEditBookById,
   deleteBook: actions.fetchBook,
-  setBooksView: actions.setView
+  setBooksView: actions.setView,
+  setCurrentPage: actions.setCurrentPage
 })
 
 BooksList.propTypes = {
@@ -98,6 +111,7 @@ BooksList.propTypes = {
   deleteBook: PropTypes.func.isRequired,
   saveBookById: PropTypes.func.isRequired,
   setBooksView: PropTypes.func.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
   books: PropTypes.object,
   history: PropTypes.object
 }
