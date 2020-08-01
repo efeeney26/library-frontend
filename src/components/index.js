@@ -4,7 +4,7 @@ import Input from './Input/Input'
 import Form from './Form/Form'
 import Link from './Link/Link'
 import Spinner from './Spinner/Spinner'
-import ErrorBanner from './ErrorBanner/ErrorBanner'
+import Banner from './Banner/Banner'
 import TextArea from './Textarea/Textarea'
 import Icon from './Icon/Icon'
 import SeparatedBlock from './SeparatedBlock/SeparatedBlock'
@@ -13,7 +13,7 @@ import GroupCard from './GroupCard/GroupCard'
 import Field from './Field/FIeld'
 import ImageContainer from './ImageContainer/ImageContainer'
 import Pagination from './Pagination/Pagination'
-import { mergeTheme, labeledComponent, LabeledInput, LabeledTextarea } from './utils'
+import { mergeTheme, getWrappedLabeledComponent, LabeledInput, LabeledTextarea } from './utils'
 
 export {
   Table,
@@ -22,7 +22,7 @@ export {
   Form,
   Link,
   Spinner,
-  ErrorBanner,
+  Banner,
   TextArea,
   Icon,
   SeparatedBlock,
@@ -37,5 +37,5 @@ export {
 
 export {
   mergeTheme,
-  labeledComponent
+  getWrappedLabeledComponent
 }

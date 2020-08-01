@@ -35,3 +35,8 @@ export const setCurrentPage = (page) => ({
   type: types.SET_CURRENT_PAGE,
   page
 })
+
+export const setFilteredBooks = (filteredBooks) => ({
+  type: types.SET_FILTERED_BOOKS,
+  filteredBooks
+})

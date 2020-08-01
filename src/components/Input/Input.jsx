@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cs from 'classnames'
+import { noop } from 'lodash'
 
 import defaultTheme from './Input.module.css'
 
 const Input = (props) => {
-  const { input, placeholder, theme } = props
+  const { input, placeholder, theme, id, onChange } = props
   return (
     <input
       {...input}
+      id={id}
       placeholder={placeholder}
-      className={cs(theme.input)}
+      className={theme.input}
+      onChange={onChange}
     />
   )
 }
@@ -20,13 +22,17 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   theme: PropTypes.shape({
     input: PropTypes.string
-  })
+  }),
+  id: PropTypes.string,
+  onChange: PropTypes.func
 }
 
 Input.defaultProps = {
   input: {},
   placeHolder: '',
-  theme: defaultTheme
+  theme: defaultTheme,
+  id: '',
+  onChange: noop()
 }
 
 Input.theme = defaultTheme

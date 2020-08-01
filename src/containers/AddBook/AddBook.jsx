@@ -36,6 +36,7 @@ const AddBook = (props) => {
           {scheme.map(({ key, type, ...rest }) => (
             <Field
               key={key}
+              id={key}
               name={key}
               component={type === 'textarea' ? LabeledTextarea : LabeledInput}
               validate={rest.validator ? requiredValidator : null}

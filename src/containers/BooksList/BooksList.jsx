@@ -4,16 +4,18 @@ import { connect } from 'react-redux'
 
 import { actions, selectors, API } from '../../__data__'
 import { LIST_VIEW } from '../../constants'
-import { Table, Spinner, ErrorBanner, Card, GroupCard, Pagination } from '../../components'
+import { Table, Spinner, Banner, Card, GroupCard, Pagination } from '../../components'
 import { getSchemeKeysArray, getMappedData, getCurrentItems } from '../utils'
 
 import { BookListHeader } from './components'
 
 const BooksList = (props) => {
   const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView, setCurrentPage } = props
-  const { books: booksList, isFetching, isError, schemeTable, view, schemeCards, booksPerPage, currentPage } = books
+  const { books: booksList, filteredBooks, isFetching, isError, schemeTable, view, schemeCards, booksPerPage, currentPage } = books
 
-  const currentBooks = useMemo(() => getCurrentItems(booksList, currentPage, booksPerPage), [booksList, currentPage, booksPerPage])
+  const filteredBooksList = useMemo(() => filteredBooks || booksList, [filteredBooks, booksList])
+
+  const currentBooks = useMemo(() => getCurrentItems(filteredBooksList, currentPage, booksPerPage), [filteredBooksList, currentPage, booksPerPage])
 
   const tableHeaders = useMemo(() => getSchemeKeysArray(schemeTable, 'title'), [schemeTable])
   const tableData = useMemo(() => getMappedData(currentBooks, schemeTable), [currentBooks, schemeTable])
@@ -38,10 +40,10 @@ const BooksList = (props) => {
   }, [deleteBook])
 
   const handleEditData = useCallback((id) => {
-    const editBook = booksList.find(book => book.id === id)
+    const editBook = filteredBooksList.find(book => book.id === id)
     saveBookById(editBook)
     history.push(`/books/${id}`)
-  }, [booksList, history, saveBookById])
+  }, [filteredBooksList, history, saveBookById])
 
   const setViewData = useCallback((view) => {
     switch (view) {
@@ -75,7 +77,12 @@ const BooksList = (props) => {
   return (
     <>
       {isFetching && <Spinner />}
-      {isError && <ErrorBanner />}
+      {isError &&
+      <Banner
+        mode="error"
+        description="Something goes wrong"
+      />
+      }
       {!isFetching && !isError && tableData?.length &&
         <>
           <BookListHeader
@@ -84,7 +91,7 @@ const BooksList = (props) => {
           {setViewData(view)}
           <Pagination
             itemsPerPage={booksPerPage}
-            totalItems={booksList.length}
+            totalItems={filteredBooksList.length}
             paginate={handlePaginate}
             activePage={currentPage}
           />

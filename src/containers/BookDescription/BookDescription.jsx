@@ -2,10 +2,10 @@ import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Form as FinalForm, Field } from 'react-final-form'
+import { Form as FinalForm } from 'react-final-form'
 
 import { actions, selectors, API } from '../../__data__'
-import { Button, Form, LabeledInput, LabeledTextarea } from '../../components'
+import { Button, Form, LabeledInput, LabeledTextarea, Field } from '../../components'
 import { getMappedData, requiredValidator } from '../utils'
 
 import styles from '../AddBook/AddBook.module.css'
@@ -37,6 +37,7 @@ const BookDescription = (props) => {
           {bookData?.length && bookData.map(({ key, type, value, ...rest }) => (
             <Field
               key={key}
+              id={key}
               name={key}
               initialValue={value}
               component={type === 'textarea' ? LabeledTextarea : LabeledInput}

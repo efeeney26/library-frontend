@@ -1,0 +1,18 @@
+@import "../utils/styles/colors.config.css";
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.success {
+    background-color: var(--green);
+}
+
+.error {
+    background-color: var(--red);
+}
