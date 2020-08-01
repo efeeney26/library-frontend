@@ -15,7 +15,7 @@ const Header = (props) => {
   const handleOnChange = useCallback((e) => {
     const filteredBooks = books.filter((book) => book.name.toLowerCase().includes(e.target.value.toLowerCase()))
     setFilteredBooks(filteredBooks)
-  }, [books])
+  }, [books, setFilteredBooks])
 
   return (
     <SeparatedBlock>

@@ -33,7 +33,8 @@ const books = (state = BOOKS_INITIAL_STATE, action) => {
     case types.SET_FILTERED_BOOKS:
       return {
         ...state,
-        filteredBooks: action.filteredBooks
+        filteredBooks: action.filteredBooks,
+        currentPage: 1
       }
     default:
       return state

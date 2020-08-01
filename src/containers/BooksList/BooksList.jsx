@@ -13,7 +13,7 @@ const BooksList = (props) => {
   const { fetchBooks, books, history, saveBookById, deleteBook, setBooksView, setCurrentPage } = props
   const { books: booksList, filteredBooks, isFetching, isError, schemeTable, view, schemeCards, booksPerPage, currentPage } = books
 
-  const filteredBooksList = filteredBooks || booksList
+  const filteredBooksList = useMemo(() => filteredBooks || booksList, [filteredBooks, booksList])
 
   const currentBooks = useMemo(() => getCurrentItems(filteredBooksList, currentPage, booksPerPage), [filteredBooksList, currentPage, booksPerPage])
 
@@ -40,10 +40,10 @@ const BooksList = (props) => {
   }, [deleteBook])
 
   const handleEditData = useCallback((id) => {
-    const editBook = booksList.find(book => book.id === id)
+    const editBook = filteredBooksList.find(book => book.id === id)
     saveBookById(editBook)
     history.push(`/books/${id}`)
-  }, [booksList, history, saveBookById])
+  }, [filteredBooksList, history, saveBookById])
 
   const setViewData = useCallback((view) => {
     switch (view) {
@@ -91,7 +91,7 @@ const BooksList = (props) => {
           {setViewData(view)}
           <Pagination
             itemsPerPage={booksPerPage}
-            totalItems={booksList.length}
+            totalItems={filteredBooksList.length}
             paginate={handlePaginate}
             activePage={currentPage}
           />
