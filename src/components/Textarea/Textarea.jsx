@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
+import { noop } from 'lodash'
 
 import defaultTheme from './Textarea.module.css'
 
 const TextArea = (props) => {
-  const { input, size, placeholder } = props
+  const { value, size, placeholder, onChange } = props
 
-  const handleSize = useCallback((size) => {
+  const handleSize = useMemo(() => {
     switch (size) {
       case 'md':
         return 7
@@ -19,10 +20,11 @@ const TextArea = (props) => {
 
   return (
     <textarea
-      {...input}
+      value={value}
+      onChange={onChange}
       placeholder={placeholder}
       className={defaultTheme.textarea}
-      rows={handleSize(size)}
+      rows={handleSize}
     />
   )
 }
@@ -30,13 +32,17 @@ const TextArea = (props) => {
 TextArea.propTypes = {
   input: PropTypes.object,
   size: PropTypes.oneOf(['md', 'sm']),
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func
 }
 
 TextArea.defaultProp = {
   name: {},
   size: 'md',
-  placeholder: ''
+  placeholder: '',
+  value: '',
+  onChange: noop()
 }
 
 TextArea.theme = defaultTheme
