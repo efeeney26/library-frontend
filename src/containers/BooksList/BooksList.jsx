@@ -22,11 +22,11 @@ const BooksList = (props) => {
 
   const cardsData = useMemo(() => getMappedData(currentBooks, schemeCards), [currentBooks, schemeCards])
 
-  const handlePaginate = useCallback((pageNumber) => setCurrentPage(pageNumber), [setCurrentPage])
-
   useEffect(() => {
     fetchBooks()
   }, [fetchBooks])
+
+  const handlePaginate = useCallback((pageNumber) => setCurrentPage(pageNumber), [setCurrentPage])
 
   const handleDeleteData = useCallback((id) => {
     if (window.confirm('Вы точно хотите удалить книгу?')) {
@@ -35,9 +35,10 @@ const BooksList = (props) => {
           const { data: { message } } = res
           alert(message)
           document.location.reload(true)
+          setCurrentPage(1)
         })
     }
-  }, [deleteBook])
+  }, [deleteBook, setCurrentPage])
 
   const handleEditData = useCallback((id) => {
     const editBook = filteredBooksList.find(book => book.id === id)
