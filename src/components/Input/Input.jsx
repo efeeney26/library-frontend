@@ -5,10 +5,11 @@ import { noop } from 'lodash'
 import defaultTheme from './Input.module.css'
 
 const Input = (props) => {
-  const { placeholder, theme, id, onChange } = props
+  const { placeholder, theme, id, onChange, value } = props
   return (
     <input
       id={id}
+      value={value}
       placeholder={placeholder}
       className={theme.input}
       onChange={onChange}
@@ -22,7 +23,8 @@ Input.propTypes = {
     input: PropTypes.string
   }),
   id: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  value: PropTypes.string
 }
 
 Input.defaultProps = {
