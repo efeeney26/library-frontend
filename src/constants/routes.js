@@ -8,5 +8,3 @@ export const API_ENDPOINTS = {
   BASE_URL: '/api/books',
   ADD_URL: '/add'
 }
-
-export const HOST_URL = 'https://library-back-restapi.herokuapp.com'
